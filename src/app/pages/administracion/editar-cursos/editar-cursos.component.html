@@ -1,0 +1,155 @@
+
+ <nav class="navbar navbar-expand-lg navbar-dark static-top"style="background-color:">
+  <div class="container">
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+       <li class="nav-item"routerLinkActive="active">
+      <button class="btn btn-circle" type="button" (click)="atras()"  >REGRESAR</button>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header bg-primary">
+        <h4 class="m-b-0 text-white">CURSOS</h4>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registerForm">
+          <div class="form-body">
+
+            <hr>
+            <div class="row p-t-20">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Título del Curso</label>
+                  <input [(ngModel)]="ofertaModelo.tituloCurso" formControlName="tituloCurso" type="text" id="firstName"
+                    class="form-control" placeholder="Título del Curso">
+                  <small class="form-control-feedback"></small>
+                </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Breve descripción del curso:
+                  </label>
+                  <textarea [(ngModel)]="ofertaModelo.descripcionCurso" formControlName="descripcionCurso" type="text"
+                    id="lastName" class="form-control" placeholder="Breve descripción del curso"></textarea>
+                  <small class="form-control-feedback"> </small>
+                </div>
+              </div>
+              <!--/span-->
+            </div>
+            <!--/row-->
+            <div class="row">
+
+              <!--/span-->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Valor</label>
+                  <input [(ngModel)]="ofertaModelo.valor " formControlName="valor" type="number" class="form-control"
+                    placeholder="$">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Categoria</label>
+                  <select [(ngModel)]="ofertaModelo.categorias" class="form-control custom-select"
+                    data-placeholder="CATEGORIAS" tabindex="1" formControlName="categorias">
+                    <option *ngFor="let opcionesgenerales of opcionesGenerales"
+                      value="{{opcionesgenerales.categorias}}">{{opcionesgenerales.categorias}}</option>
+
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Estado del curso</label>
+                  <select
+                    [ngClass]="{'bg-primary text-white':ofertaModelo.estado=='PUBLICADO','bg-danger text-white':ofertaModelo.estado=='NO PUBLICADO'}"
+                    formControlName="estado" class="form-control custom-select text" data-placeholder="Sellecionar"
+                    tabindex="1" [(ngModel)]="ofertaModelo.estado" (change)="updateEstado()">
+                    <option class="text" value="PUBLICADO">PUBLICADO</option>
+                    <option class="text" value="NO PUBLICADO">NO PUBLICADO</option>
+
+                  </select>
+                </div>
+                <a *ngIf="ofertaModelo.urlPdf != null" href="{{ofertaModelo.urlPdf}}" class="btn btn-primary"
+                target="_blank">VER TEMARIO</a>
+              <a *ngIf="ofertaModelo.urlPdf == null" class="btn btn-warning">NO HAY TEMARIO ADJUNTADO</a>
+              </div>
+
+
+            </div>
+            <br>
+            <br>
+            <!--/row-->
+
+            <div class="col-md-12">
+
+
+
+                           <!-- Fin cambio de diseño -->
+                           <div class="container fileUploadWrapper">
+                            <div class="row">
+                                <!-- Progress Bar -->
+                                <div class="col-md-12" *ngIf="progress">
+                                    <div class="progress form-group">
+                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                            [style.width.%]="progress">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="text-danger" for="tipoDeArchivp">Por favor temario de curso debe ser
+                                        adjuntado en formato ".pdf" </label>
+                                    <div class="fileupload" appDragDropFileUpload (click)="fileField.click()"
+                                        (fileDropped)="upload($event)">
+                                        <span class="ddinfo">Presione aqui para subir su temario de curso</span>
+                                        <input type="file" accept=".pdf" name="avatars" #fileField
+                                            (change)="upload($event.target.files)" hidden multiple>
+
+                                    </div>
+
+
+
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="image-list" *ngFor="let file of fileArr; let i = index">
+                                        <div class="profile">
+                                            <img [src]="sanitize(file['url'])" alt="">
+                                        </div>
+                                        <p>{{file.item.name}}</p>
+                                    </div>
+                                    <p class="message">{{msg}}</p>
+                                </div>
+                            </div>
+                        </div>
+                           <!--/row-->
+
+
+          </div>
+
+
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary" (click)="update()"><i
+                class="fa fa-save"></i>ACTUALIZAR</button>
+            &nbsp;&nbsp;
+            <button type="submit" class="btn btn-danger" (click)="delete()"> <i
+                class="fa fa-check"></i>ELIMINAR</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

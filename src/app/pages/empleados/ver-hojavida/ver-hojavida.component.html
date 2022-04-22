@@ -1,0 +1,57 @@
+<div class="row  animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+              
+
+
+
+
+
+                <div class=" container p-3 " class="col-sm">
+                    <h3 align="center" id="color">PERFIL PUBLICADO</h3>
+                </div>
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="card caja0" *ngFor="let form of  formularios| paginate: { itemsPerPage: 1, currentPage: totalRegistros }; let i = index">      
+                            <tr *ngIf="(form.estado ==='PUBLICADO')" style="padding:2%">
+                                <!--<h5 class= "card-header" style="background: azure">Nº</h5>
+                                <p class="card-text">{{i+1}}</p>--> 
+                                <h5 class= "card-header" style="background: azure">NOMBRE</h5>
+                                <p class="card-text">{{form.nombre}}</p>
+                                <h5 class= "card-header" style="background: azure" >CÉDULA</h5>
+                                <p class="card-text">{{form.cedula}}</p>
+                                <h5 class= "card-header" style="background: azure"  >CATEGORIA</h5>
+                                <p class="card-text">{{form.categorias}}</p>
+                                <h5 class= "card-header" style="background: azure">FECHA CREACIÓN</h5>
+                                <p class="card-text">{{form.fechaReporte |date:'dd-MM-yyyy'}}</p>
+                                <h5 class= "card-header" style="background: azure">SALARIO</h5>
+                                <p class="card-text">{{form.refSalarial}}</p>
+                                <h5 class= "card-header" style="background: azure">ESTADO</h5>
+                                <p class="card-text" [ngClass]="{'bg-primary text-white':form.estado=='PUBLICADO','bg-danger text-white':form.estado=='NO PUBLICADO'}">{{form.estado}}</p>
+                                <div class="row">
+                                    <div style="padding-right: 4%;padding-bottom: 2%;" class="col-12">
+                                        <button type="button" class="btn btn-outline-primary" style="width: 100%;height: auto;font-size: 100%;" [routerLink]="['/dashboard/editarhojavida/',form._id]"><b>EDITAR</b></button>
+                                    </div>
+                                </div>
+                            </tr>
+                        </div>
+                        <br>
+                        <br>
+                        <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

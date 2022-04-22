@@ -1,0 +1,437 @@
+<div class="container ">
+
+    <div>
+
+        <!--AQUI EMPEZA EL FORMULARIO-->
+
+        <form [formGroup]="registerForm">
+            <div class="content">
+
+                <div class="">
+                    <div class="card-header bg-primary">
+                        <h4 class="m-b-0 text-white">FORMULARIO</h4>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Foto</h4>
+
+                                    <img *ngIf="!imagenTemporal" [src]="usuario.img |imagen" class="w150">
+                                    <img *ngIf="imagenTemporal" [src]="imagenTemporal" class="w150">
+                                    <input (change)="seleccionaImagen($event.target.files[0])" type="file">
+                                    <br>
+                                    <br>
+                                    <button (click)="cambiarImagen()" type="button"
+                                        class="btn btn-primary waves-effect waves-light m-r-10">
+                                        <i class="fa fa-save"></i> Actualizar Foto</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">NOMBRES</label>
+                                <input [(ngModel)]="hojaModelo.nombre" formControlName="nombre" type="text"
+                                    id="firstName" class="form-control" placeholder="NOMBRES">
+                                <small class="form-control-feedback"></small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">APELLIDOS</label>
+                                <input [(ngModel)]="hojaModelo.apellido" formControlName="apellido" type="text"
+                                    id="firstName" class="form-control" placeholder="APELLIDOS">
+                                <small class="form-control-feedback"></small>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">CEDULA</label>
+                                <input [(ngModel)]="hojaModelo.cedula" formControlName="cedula" type="number"
+                                    class="form-control" placeholder="CEDULA DE IDENTIDAD">
+                                <small class="form-control-feedback"></small>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">REFERENCIA SALARIAL</label>
+                                <input [(ngModel)]="hojaModelo.refSalarial" formControlName="refSalarial" type="number"
+                                    id="firstName" class="form-control" placeholder="REFERENCIA SALARIAL">
+                                <small class="form-control-feedback"></small>
+                            </div>
+                        </div>
+                        <!--/span-->
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">FECHA DE NACIMIENTO</label>
+                                <input [(ngModel)]="hojaModelo.fechaNacimiento" formControlName="fechaNacimiento"
+                                    type="date" id="firstName" class="form-control" placeholder="Fecha">
+                                <small class="form-control-feedback"></small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">EDAD</label>
+                                <input [(ngModel)]="hojaModelo.edad" formControlName="edad" type="number" id="firstName"
+                                    class="form-control" placeholder="EDAD">
+                                <small class="form-control-feedback"></small>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="form-group has-success">
+                                <label class="control-label">GENERO:</label>
+                                <select [(ngModel)]="hojaModelo.genero" formControlName="genero"
+                                    class="form-control custom-select">
+                                    <option value="MASCULINO">MASCULINO</option>
+                                    <option value="FEMENINO">FEMENINO</option>
+                                    <option value="OTROS">OTROS</option>
+                                </select>
+                                <small class="form-control-feedback"> </small>
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">OCUPACIÓN</label>
+                                <input [(ngModel)]="hojaModelo.ocupacion" formControlName="ocupacion" type="text"
+                                    id="firstName" class="form-control" placeholder="ocupacion">
+                                <small class="form-control-feedback"></small>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    <div class="row">
+
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Breve descripción :
+                                </label>
+                                <textarea [(ngModel)]="hojaModelo.descripcion" formControlName="descripcion" type="text"
+                                    id="lastName" class="form-control" placeholder="Breve descripción"></textarea>
+                                <small class="form-control-feedback"> </small>
+                            </div>
+                        </div>
+                        <!--/span-->
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Categoria</label>
+                                <select [(ngModel)]="hojaModelo.categorias" class="form-control custom-select"
+                                    data-placeholder="CATEGORIAS" tabindex="1" formControlName="categorias">
+                                    <option *ngFor="let opcionesgenerales of opcionesGenerales"
+                                        value="{{opcionesgenerales.categorias}}">
+                                        {{opcionesgenerales.categorias}}</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Provincias</label>
+                                <select [(ngModel)]="hojaModelo.provincia" name="Provincia"
+                                    class="browser-default custom-select form-control" formControlName="provincia"
+                                    (change)="selectProvincia($event.target.value)">
+                                    <option *ngFor="let prov of ciuadadesOpcion" value="{{prov.provincia}}">
+                                        {{prov.provincia}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Ciudad</label>
+                                <select [(ngModel)]="hojaModelo.ciudad" name="Ciudad"
+                                    class="browser-default custom-select form-control" formControlName="ciudad">
+                                    <option *ngFor="let canton of ciudad.cantones" value="{{canton}}">
+                                        {{canton}}
+                                    </option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <!--/span-->
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Mi Dirección</label>
+                                <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                                    [(ngModel)]="hojaModelo.direccion" formControlName="direccion"
+                                    placeholder="Buscar mi ubicación" autocorrect="off" autocapitalize="on"
+                                    spellcheck="off" type="text" #search>
+                            </div>
+                            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                                    (dragEnd)="markerDragEnd($event)"></agm-marker>
+                            </agm-map>
+                            <br>
+                            <h5>Dirección: {{address}}</h5>
+
+                        </div>
+                        <!--/span-->
+                        <div class="form-group col-6">
+                            <label>EXPERIENCIA LABORAL</label>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" (click)="voteUp(-1)">-</button>
+                                </span>
+
+                                <input type="number" class="form-control "
+                                    placeholder="Años de experiencia" [(ngModel)]="hojaModelo.experiencia"
+                                    formControlName="experiencia" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" (click)="voteUp(+1)">+</button>
+                                </span>
+                            </div>
+
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Experiencia Laboral :
+                                </label>
+                                <textarea formControlName="descripcionExperiencia" type="text"
+                                    [(ngModel)]="hojaModelo.descripcionExperiencia" id="lastName" class="form-control"
+                                    placeholder="Breve descripción"></textarea>
+                                <small class="form-control-feedback"> </small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group has-success">
+                                <label class="control-label">Nivel de Educación :</label>
+                                <select formControlName="nivelEducacion" [(ngModel)]="hojaModelo.nivelEducacion"
+                                    class="form-control custom-select">
+                                    <option value="Fijo">PRIMARIA</option>
+                                    <option value="Una Vez">SECUNDARIA</option>
+                                    <option value="Una Vez">SUPERIOR</option>
+                                </select>
+                                <small class="form-control-feedback"> </small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Estado de Perfil</label>
+                                <select
+                                    [ngClass]="{'bg-primary text-white':hojaModelo.estado=='PUBLICADO','bg-danger text-white':hojaModelo.estado=='NO PUBLICADO'}"
+                                    formControlName="estado" class="form-control custom-select text"
+                                    data-placeholder="Sellecionar" tabindex="1" [(ngModel)]="hojaModelo.estado"
+                                    (change)="updateEstado()">
+                                    <option class="text" value="PUBLICADO">PUBLICADO</option>
+                                    <option class="text" value="NO PUBLICADO">NO PUBLICADO</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                 
+                     <h4>REFERENCIAS PERSONALES</h4>
+                     <br>
+                     <h5>Referencia 1</h5>
+                     <div class="row col-12">
+
+
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.nombreRef1" formControlName="nombreRef1" type="text" id="firstName" class="form-control"
+                                     placeholder="Nombre">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.cargoRef1" formControlName="cargoRef1" type="text" id="firstName" class="form-control"
+                                     placeholder="Cargo">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.empresaRef1" formControlName="empresaRef1" type="text" id="firstName" class="form-control"
+                                     placeholder="Empresa">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.telefonoRef1" formControlName="telefonoRef1" type="text" id="firstName"
+                                     class="form-control" placeholder="Teléfono">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+
+                     </div>
+                     <!--Referencia 2-->
+
+                     <h5>Referencia 2</h5>
+                     <div class="row col-12">
+
+
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.nombreRef2" formControlName="nombreRef2" type="text" id="firstName" class="form-control"
+                                     placeholder="Nombre">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.cargoRef2" formControlName="cargoRef2" type="text" id="firstName" class="form-control"
+                                     placeholder="Cargo">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.empresaRef2" formControlName="empresaRef2" type="text" id="firstName" class="form-control"
+                                     placeholder="Empresa">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.telefonoRef2" formControlName="telefonoRef2" type="text" id="firstName"
+                                     class="form-control" placeholder="Teléfono">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+
+                     </div>
+
+                     <!--Referencia 3-->
+
+                     <h5>Referencia 3</h5>
+                     <div class="row col-12">
+
+
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.nombreRef3" formControlName="nombreRef3" type="text" id="firstName" class="form-control"
+                                     placeholder="Nombre">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.cargoRef3" formControlName="cargoRef3" type="text" id="firstName" class="form-control"
+                                     placeholder="Cargo">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.empresaRef3" formControlName="empresaRef3" type="text" id="firstName" class="form-control"
+                                     placeholder="Empresa">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+                         <div class="col-md-3">
+                             <div class="form-group">
+
+                                 <input [(ngModel)]="hojaModelo.telefonoRef3" formControlName="telefonoRef3" type="text" id="firstName"
+                                     class="form-control" placeholder="Teléfono">
+                                 <small class="form-control-feedback"></small>
+                             </div>
+                         </div>
+
+                     </div>
+
+                </div>
+                <div>
+                    <a   *ngIf="hojaModelo.urlPdf != null" href="{{hojaModelo.urlPdf}}" class="btn btn-primary" target="_blank">VER HOJA DE VIDA</a>
+                    <a   *ngIf="hojaModelo.urlPdf == null" class="btn btn-warning"  (click)="nohay()">NO HAY HOJA DE VIDA ADJUNTADA</a>
+                </div>
+
+                <br>
+
+
+
+
+            </div>
+
+             <!-- Fin cambio de diseño -->
+             <div class="container fileUploadWrapper">
+                <div class="row">
+                    <!-- Progress Bar -->
+                    <div class="col-md-12" *ngIf="progress">
+                        <div class="progress form-group">
+                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                [style.width.%]="progress">
+                            </div>
+                        </div>
+                    </div>
+                 
+                    <div class="col-md-12">
+                        <label class="text-danger" for="tipoDeArchivp">Por favor su hoja de vida debe ser
+                            adjuntada en formato ".pdf" </label>
+                        <div class="fileupload" appDragDropFileUpload (click)="fileField.click()"
+                            (fileDropped)="upload($event)">
+                            <span class="ddinfo">Presione aqui para subir y actualizar tu hoja de vida</span>
+                            <input type="file" accept=".pdf" name="avatars" #fileField
+                                (change)="upload($event.target.files)" hidden multiple>
+
+                        </div>
+
+                       
+
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="image-list" *ngFor="let file of fileArr; let i = index">
+                            <div class="profile">
+                                <img [src]="sanitize(file['url'])" alt="">
+                            </div>
+                            <p>{{file.item.name}}</p>
+                        </div>
+                        <p class="message">{{msg}}</p>
+                    </div>
+                </div>
+            </div>
+               <!--/row-->
+
+
+
+
+
+
+            <button type="submit" class="btn btn-primary" (click)="update()"><i
+                    class="fa fa-save"></i>ACTUALIZAR</button>
+            &nbsp;&nbsp;
+            <button type="submit" class="btn btn-danger" (click)="eliminar()"> <i
+                    class="fa fa-check"></i>ELIMINAR</button>
+
+        </form>
+
+    </div>
+
+
+</div>

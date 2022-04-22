@@ -1,0 +1,300 @@
+<app-header-pagina></app-header-pagina>
+
+<img src="../../../../assets/images/CM/SEVICIOD.PNG" alt="" class="img-responsive">
+<br>
+<br>
+<div align="center">
+  <h3 >Servicio Doméstico</h3>
+</div>
+<div class="container ">
+
+  <div id="stepper1" class="bs-stepper">
+    <div class="bs-stepper-header">
+      <div class="step" data-target="#test-l-1">
+        <button class="step-trigger">
+          <span class="bs-stepper-circle">1</span>
+          <span class="bs-stepper-label"></span>
+        </button>
+      </div>
+      <div class="line"></div>
+      <div class="step" data-target="#test-l-2">
+        <button class="step-trigger">
+          <span class="bs-stepper-circle">2</span>
+          <span class="bs-stepper-label"></span>
+        </button>
+      </div>
+      <div class="line"></div>
+      <div class="step" data-target="#test-l-3">
+        <button class="step-trigger">
+          <span class="bs-stepper-circle">3</span>
+          <span class="bs-stepper-label"></span>
+        </button>
+      </div>
+      <!--div class="line"></!--div>
+      <div-- class="step" data-target="#test-l-4">
+        <button class="step-trigger">
+          <span class="bs-stepper-circle">4</span>
+          <span class="bs-stepper-label"></span>
+        </button>
+      </div-->
+      <div class="line"></div>
+      <div class="step" data-target="#test-l-5">
+        <button class="step-trigger">
+          <span class="bs-stepper-circle">4</span>
+          <span class="bs-stepper-label"></span>
+        </button>
+      </div>
+
+    </div>
+
+
+    <!--AQUI EMPEZA EL FORMULARIO-->
+
+    <div class="bs-stepper-content">
+      <form [formGroup]="registerForm" (ngSubmit)="crearUsuario()">
+        <div id="test-l-1" class="content">
+          <div class="form-group">
+                     <label for="exampleInputEmail1" joyrideStep="prota1" title="Bienvenido" text="Estas en la categoria Servicio doméstico selecciona provincia y ciudad donde vives"  >Selecciona Provincia y Ciudad</label>
+
+            <br>
+            <br>
+            <div class="container">
+
+              <div class="col-4">
+                <h5>Provincias</h5>
+                <ng-select formControlName="provincia" name="Provincia" (change)="changeFn(val)" [(ngModel)]="val"
+                  bindLabel="playerName" placeholder="" appendTo="body">
+                  <ng-option *ngFor="let prov of provincias" [value]="prov.name">{{prov.name}}</ng-option>
+                </ng-select>
+              </div>
+              <br>
+              <div class="col-4">
+                <h5>Ciudades</h5>
+                <ng-select formControlName="ciudad" name="Ciudad" (change)="changeFn(ciud)" [(ngModel)]="ciud"
+                  bindLabel="playerName" placeholder="" appendTo="body">
+                  <ng-option *ngFor="let ciu of ciudades" [value]="ciu.name">{{ciu.name}}</ng-option>
+                </ng-select>
+              </div>
+
+              <div class="form-group">
+                <label>Mi Dirección</label>
+                <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                  formControlName="direccion" placeholder="Buscar mi ubicación" autocorrect="off" autocapitalize="off" joyrideStep="prota2" title="REGISTRO CLIENTE" text="En este campo ingresa tu dirección o mueve el marker del mapa para encontrar tu ubicación mientras miras este mensaje desliza la pantalla para ver el campo de referencia"
+                  spellcheck="off" type="text" #search>
+                <div *ngIf="registerForm.get('direccion').errors && registerForm.get('direccion').dirty">
+                  <p class="text-danger center" *ngIf="registerForm.get('direccion').hasError('required')">
+                    <span size="2">Dirección es requerida</span>
+                  </p>
+                </div>
+              </div>
+
+              <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                  (dragEnd)="markerDragEnd($event)"></agm-marker>
+              </agm-map>
+              <br>
+              <h5>Dirección: {{address}}</h5>
+
+            </div>
+          </div>
+
+
+
+
+               <div class="row m-0 justify-content-center align-items-center vh-100">
+                <button (click)="next()" class="btn btn-primary  mt-5" align="center">SIGUIENTE</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success mt-5" (click)="asistencia()" ><i><img src="../../../../assets/images/patch-question.svg" alt=""></i></button>
+              </div>
+        </div>
+        <div id="test-l-2" class="content">
+          <div class="form-group">
+            <div class="form-group">
+              <h2 align="center" >Cuando lo Necesitas</h2>
+              <div class="form-group">
+                    <label class="control-label">Fecha </label>
+                    <input type="date" class="form-control" placeholder="dd/mm/yyyy" joyrideStep="prota501" title="Paso 2" text="En este paso 2 indica en que fecha necesitas el servicio doméstico"
+                        formControlName="fecha">
+                </div>
+            </div>
+
+          </div>
+               <div class="row m-0 justify-content-center align-items-center vh-100">
+                <button (click)="next()" class="btn btn-primary  mt-5" align="center">SIGUIENTE</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success mt-5" (click)="asistencia2()" ><i><img src="../../../../assets/images/patch-question.svg" alt=""></i></button>
+              </div>
+        </div>
+        <div id="test-l-3" class="content">
+          <h2 align="center" joyrideStep="prota502" title="Bienvenido" text="En este paso 3  cuanta experiencia necesitas">¿Cuanta experiencia tienes?</h2>
+          <div class="form-group">
+            <div>
+
+              <div class="row m-0 justify-content-center align-items-center vh-100 ">
+                <div class="form-group col-6">
+
+                  <div class="input-group">
+
+
+                    <input  type="text" class="form-control " placeholder="Años de experiencia"
+                      formControlName="experiencia" />
+
+                  </div>
+                  <div *ngIf="registerForm.get('experiencia').errors && registerForm.get('experiencia').dirty">
+                    <p class="text-danger center" *ngIf="registerForm.get('experiencia').hasError('required')">
+                      <span size="2">Experiencia es requerida</span>
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+            <!--div class="form-group" >
+              <label >Experiencia:&nbsp;&nbsp;</label>
+            <input type="number" class="form-control col-6"  placeholder="Ingrese un número" formControlName="experiencia" />
+            </!--div-->
+
+          </div>
+               <div class="row m-0 justify-content-center align-items-center vh-100">
+                <button (click)="next()" class="btn btn-primary  mt-5" align="center">SIGUIENTE</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success mt-5" (click)="asistencia3()" ><i><img src="../../../../assets/images/patch-question.svg" alt=""></i></button>
+              </div>
+        </div>
+        <!--div id="test-l-4" class="content">
+          <div class="form-group">
+            <h2 align="center">Tipo de Cuidado</h2>
+            <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+              <div class="input-group ">
+                <ul class="icheck-list" class="list">
+                  <li>
+                    <input type="checkbox" class="check form-control" id="minimal-checkbox-1"formControlName="lavado">
+                    <label for="minimal-checkbox-1">Lavado de Ropa de bebe </label>
+                  </li>
+                  <li>
+                    <input type="checkbox" class="check form-control" id="minimal-checkbox-2"formControlName="comida">
+                    <label for="minimal-checkbox-2">Comida</label>
+                  </li>
+                  <li>
+                    <input type="checkbox" class="check form-control" id="minimal-checkbox-3"formControlName="tareas">
+                    <label for="minimal-checkbox-3">Tareas menores</label>
+                  </li>
+                  <li>
+                    <input type="checkbox" class="check form-control" id="minimal-checkbox-4"formControlName="limpieza">
+                    <label for="minimal-checkbox-4">Limpieza</label>
+                  </li>
+
+                </ul>
+
+              </div>
+            </div>
+          </div>
+               <div class="row m-0 justify-content-center align-items-center vh-100">
+                <button (click)="next()" class="btn btn-primary  mt-5" align="center">SIGUIENTE</button>
+                &nbsp;&nbsp;
+                <button type="button" class="btn btn-success mt-5" (click)="asistencia()" ><i><img src="../../../../assets/images/patch-question.svg" alt=""></i></button>
+              </div>
+        </!--div-->
+
+
+
+
+        <div id="test-l-5" class="content text-center">
+
+          <h2 align="center"joyrideStep="prota503" title="Bienvenido" text="Llena los 4 campos para terminar tu registro e iniciar sesión ">Regístrate</h2>
+      <!--     <div class="form-group">
+
+            <input type="text" class="form-control col-6" placeholder="USUARIO" formControlName="usuario" />
+            <div *ngIf="registerForm.get('usuario').errors && registerForm.get('usuario').dirty">
+              <p class="text-danger center" *ngIf="registerForm.get('usuario').hasError('required')">
+                <span size="2">Usuario es requerido</span>
+              </p>
+              <p class="text-danger center" *ngIf="registerForm.get('usuario').hasError('minlength')">
+                <span size="2">Minimo de 3 Caracteres</span>
+              </p>
+              <p class="text-danger center" *ngIf="registerForm.get('usuario').hasError('maxlength')">
+                <span size="2">Maximo de 30 Caracteres</span>
+              </p>
+
+            </div>
+          </div> -->
+          <div class="form-group">
+
+            <input type="text" class="form-control col-6" placeholder="TELEFONO" formControlName="telefono" />
+
+            <div *ngIf="registerForm.get('telefono').errors && registerForm.get('telefono').dirty">
+              <p class="text-danger center" *ngIf="registerForm.get('telefono').hasError('required')">
+                  <span size="2">Telefono es requerido</span>
+              </p>
+              <p class="text-danger center" *ngIf="registerForm.get('telefono').hasError('minlength')">
+                  <span size="2">Minimo de 10 Caracteres</span>
+              </p>
+              <p class="text-danger center" *ngIf="registerForm.get('telefono').hasError('maxlength')">
+                  <span size="2">Maximo de 10 Caracteres</span>
+              </p>
+
+          </div>
+          </div>
+          <div class="form-group">
+
+            <input type="email" class="form-control col-6" id="exampleInputEmail1" placeholder="CORREO ELECTRONICO"
+              formControlName="email" />
+              <div *ngIf="registerForm.get('email').errors && registerForm.get('email').dirty">
+                <p class="text-danger center" *ngIf="registerForm.get('email').hasError('required')">
+                    <span size="2">Email es requerido</span>
+                </p>
+                <p class="text-danger center"
+                    *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].hasError('pattern')">
+                    <span size="2">Tiene que ser una dirección de correo electrónico válida.
+                        Ejemplo :("mail@.com").
+                    </span>
+                </p>
+
+            </div>
+          </div>
+
+          <div class="form-group">
+
+            <input type="password" class="form-control col-6" id="exampleInputPassword1" placeholder="CONTRASEÑA"
+              formControlName="password" />
+          </div>
+          <!-- <div class="form-group">
+
+            <input type="number" class="form-control col-6" id="exampleInputPassword1"
+              placeholder="CLAVE DE VERIFICACIÓN ENVIADA AL CORREO" formControlName="clave" />
+          </div>  -->
+           <!--<button class="btn btn-primary mt-5" (click)="RevisandoEmail()">ENVIAR CLAVE A EMAIL</button> -->
+           <div class="row ">
+            <div class="col text-danger  ">
+             <!--  <p class="center" *ngIf="campoNoValido('provincia')|| opcion == '0' ">Debe seleccionar una provincia en el paso uno</p>
+              <p class="center" *ngIf="campoNoValido('ciudad')|| opcion1 == '0'" >Debe seleccionar una ciudad en el paso uno</p> -->
+               <p class="center" *ngIf="campoNoValido('direccion')">Debe escribir una dirección o mover el market del mapa en el paso uno</p>
+               <p class="center" *ngIf="campoNoValido('fecha')">Debe seleccionar una fecha indicando Cuando lo Necesitas en el paso 2</p>
+               <p class="center" *ngIf="campoNoValido('experiencia')">Debe escribir cuanta experiencia necesitas en el paso 3</p>
+
+               <!--  <p class="center" *ngIf="campoNoValido('usuario')">Debe llenar el campo usuario</p> -->
+                <p class="center" *ngIf="campoNoValido('telefono')">Debe llenar el campo teléfono 10 caracteres ejemplo: 0900 000 000</p>
+                <p class="center" *ngIf="campoNoValido('email')">Debe llenar el campo email</p>
+                <p class="center" *ngIf="campoNoValido('password')">Debe poner una contraseña para completar el registro</p>
+            </div>
+
+           </div>
+          &nbsp;&nbsp;
+          <button type="submit" class="btn btn-primary mt-5" >REGISTRAR</button>
+          &nbsp;&nbsp;
+          <button type="button" class="btn btn-success mt-5" (click)="asistencia4()" ><i><img src="../../../../assets/images/patch-question.svg" alt=""></i></button>
+     <!--      &nbsp;&nbsp;
+          <button  class="btn btn-primary mt-5" [routerLink]="['/login']" routerLinkActive="router-link-active" >INGRESAR</button> -->
+        </div>
+      </form>
+    </div>
+  </div>
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#56c2c6" type="ball-clip-rotate-multiple">
+    <p style="font-size: 20px; color: #56c2c6">Jobandcare...</p>
+  </ngx-spinner>
+</div>
+
+<app-footer></app-footer>

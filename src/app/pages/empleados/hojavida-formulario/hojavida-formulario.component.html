@@ -1,0 +1,834 @@
+<div class="container ">
+
+    <div id="stepper1" class="bs-stepper">
+        <div class="bs-stepper-header">
+            <div class="step" data-target="#test-l-1"  [ngStyle]="myStyles">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle">1</span>
+                    <span class="bs-stepper-label"></span>
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-2">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle" (click)="show()">2</span>
+                    <span class="bs-stepper-label"></span>
+                </button>
+            </div>
+
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-3">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle">3</span>
+                    <span class="bs-stepper-label"></span>
+                </button>
+            </div>
+
+        </div>
+
+
+        <!--AQUI EMPEZA EL FORMULARIO-->
+
+        <div class="bs-stepper-content">
+
+            <div id="test-l-1" class="content"  >
+              <div  [ngStyle]="myStyles">
+                <div >
+                <form [formGroup]="registerForm" (ngSubmit)="crearUsuarioHoja()" >
+                    <div class="">
+                        <div class="card-header bg-primary">
+                            <h4 class="m-b-0 text-white">FORMULARIO</h4>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Foto</h4>
+
+                                        <img *ngIf="!imagenTemporal" [src]="usuario.img |imagen" class="w150">
+                                        <img *ngIf="imagenTemporal" [src]="imagenTemporal" class="w150">
+                                        <input (change)="seleccionaImagen($event.target.files[0])" type="file">
+                                        <br>
+                                        <br>
+                                        <button (click)="cambiarImagen()" type="button"
+                                            class="btn btn-primary waves-effect waves-light m-r-10">
+                                            <i class="fa fa-save"></i> Actualizar Foto</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">NOMBRES</label>
+                                    <input formControlName="nombre" type="text" id="firstName" class="form-control"
+                                        placeholder="NOMBRES">
+                                    <small class="form-control-feedback"></small>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('nombre')">Debe llenar el campo nombre</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">APELLIDOS</label>
+                                    <input formControlName="apellido" type="text" id="firstName" class="form-control"
+                                        placeholder="APELLIDOS">
+                                    <small class="form-control-feedback"></small>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('apellido')">Debe llenar el campo apellido</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">CEDULA</label>
+                                    <input formControlName="cedula" type="number" class="form-control"
+                                        placeholder="CEDULA DE IDENTIDAD">
+                                    <small class="form-control-feedback"></small>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('cedula')">Debe llenar el campo cedula con sus 10
+                                          digitos</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">REFERENCIA SALARIAL</label>
+                                    <input formControlName="refSalarial" type="text" id="firstName" class="form-control"
+                                        placeholder="REFERENCIA SALARIAL">
+                                    <small class="form-control-feedback"></small>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('refSalarial')">Debe llenar el campo de referencia
+                                          salarial cuanto aspira a ganar</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">FECHA DE NACIMIENTO</label>
+                                    <input formControlName="fechaNacimiento" type="date" id="firstName"
+                                        class="form-control" placeholder="Fecha">
+                                    <small class="form-control-feedback"></small>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('fechaNacimiento')">Debe seleccionar su fecha de
+                                          nacimiento</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">EDAD</label>
+                                    <input formControlName="edad" type="number" id="firstName" class="form-control"
+                                        placeholder="EDAD">
+                                    <small class="form-control-feedback"></small>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('edad')">Debe indicar su edad </p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group has-success">
+                                    <label class="control-label">GENERO:</label>
+                                    <select formControlName="genero" class="form-control custom-select">
+                                        <option value="MASCULINO">MASCULINO</option>
+                                        <option value="FEMENINO">FEMENINO</option>
+                                        <option value="OTROS">OTROS</option>
+                                    </select>
+                                    <small class="form-control-feedback"> </small>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('genero')">Debe seleccionar un genero </p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">OCUPACIÓN</label>
+                                    <input formControlName="ocupacion" type="text" id="firstName" class="form-control"
+                                        placeholder="Ocupación">
+                                    <small class="form-control-feedback"></small>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('ocupacion')">Debe escribir su ocupación</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Breve descripción :
+                                    </label>
+                                    <textarea formControlName="descripcion" type="text" id="lastName"
+                                        class="form-control" placeholder="Breve descripción"></textarea>
+                                    <small class="form-control-feedback"> </small>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('descripcion')">Debe poner una descripción</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Categoria</label>
+                                    <select class="form-control custom-select" data-placeholder="CATEGORIAS"
+                                        tabindex="1" formControlName="categorias">
+                                        <option *ngFor="let opcionesgenerales of opcionesGenerales"
+                                            value="{{opcionesgenerales.categorias}}">
+                                            {{opcionesgenerales.categorias}}</option>
+
+                                    </select>
+
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('categorias')">Debe seleccionar una categoria </p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Provincias</label>
+                                    <select name="Provincia" class="browser-default custom-select form-control"
+                                        formControlName="provincia" (change)="selectProvincia($event.target.value)" [(ngModel)]="opcion" (change)="capturar()">
+                                        <option value="0">Seleccione una provincia</option>
+                                        <option *ngFor="let prov of ciuadadesOpcion" value="{{prov.provincia}}">
+                                            {{prov.provincia}}</option>
+                                    </select>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('provincia')|| opcion == '0' ">Debe seleccionar una provincia</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Ciudad</label>
+                                    <select name="Ciudad" class="browser-default custom-select form-control"
+                                        formControlName="ciudad" [(ngModel)]="opcion1" (change)="capturar1()">
+                                        <option value="0">Seleccione una ciudad</option>
+                                        <option *ngFor="let canton of ciudad.cantones" value="{{canton}}">
+                                            {{canton}}
+                                        </option>
+                                    </select>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('ciudad')|| opcion1 == '0'" >Debe seleccionar una ciudad</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--/span-->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Mi Dirección</label>
+                                    <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                                        formControlName="direccion" placeholder="Buscar mi ubicación" autocorrect="off"
+                                        autocapitalize="on" spellcheck="off" type="text" #search>
+                                        <div class="row ">
+                                          <div class="col text-danger  ">
+                                            <p class="center" *ngIf="campoNoValido('direccion')">Debe escribir una dirección o mover el marker del mapa </p>
+                                          </div>
+                                        </div>
+                                </div>
+                                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                                    <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                                        (dragEnd)="markerDragEnd($event)"></agm-marker>
+                                </agm-map>
+                                <br>
+                                <h5>Dirección: {{address}}</h5>
+
+                            </div>
+                            <!--/span-->
+                            <div class="form-group col-6">
+                                <label>AÑOS DE EXPERIENCIA LABORAL</label>
+                                <div class="input-group">
+
+
+                                    <input type="text" class="form-control " placeholder="Años de experiencia"
+                                        formControlName="experiencia" />
+
+
+                                </div>
+                                <div class="row ">
+                                  <div class="col text-danger  ">
+                                    <p class="center" *ngIf="campoNoValido('experiencia')">Debe poner los años de experiencia</p>
+                                  </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Experiencia Laboral :
+                                    </label>
+                                    <textarea formControlName="descripcionExperiencia" type="text" id="lastName"
+                                        class="form-control" placeholder="Breve descripción"></textarea>
+                                    <small class="form-control-feedback"> </small>
+
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+                                        <p class="center" *ngIf="campoNoValido('descripcionExperiencia')">Debe poner una descripción de su experincia</p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group has-success">
+                                    <label class="control-label">Nivel de Educación :</label>
+                                    <select formControlName="nivelEducacion" class="form-control custom-select">
+                                        <option value="PRIMARIA">PRIMARIA</option>
+                                        <option value="SECUNDARIA">SECUNDARIA</option>
+                                        <option value="SUPERIOR">SUPERIOR</option>
+                                    </select>
+                                    <small class="form-control-feedback"> </small>
+                                    <div class="row ">
+                                      <div class="col text-danger  ">
+
+                            <p class="center" *ngIf="campoNoValido('nivelEducacion')">Debe seleccionar nivel de educación </p>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <!--/row-->
+                        <h4>REFERENCIAS PERSONALES</h4>
+                        <br>
+                        <h5>Referencia 1</h5>
+                        <div class="row col-12">
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="nombreRef1" type="text" id="firstName" class="form-control"
+                                        placeholder="Nombre">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="cargoRef1" type="text" id="firstName" class="form-control"
+                                        placeholder="Cargo">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="empresaRef1" type="text" id="firstName" class="form-control"
+                                        placeholder="Empresa">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="telefonoRef1" type="text" id="firstName"
+                                        class="form-control" placeholder="Teléfono">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Referencia 2-->
+
+                        <h5>Referencia 2</h5>
+                        <div class="row col-12">
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="nombreRef2" type="text" id="firstName" class="form-control"
+                                        placeholder="Nombre">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="cargoRef2" type="text" id="firstName" class="form-control"
+                                        placeholder="Cargo">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="empresaRef2" type="text" id="firstName" class="form-control"
+                                        placeholder="Empresa">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="telefonoRef2" type="text" id="firstName"
+                                        class="form-control" placeholder="Teléfono">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--Referencia 2-->
+
+                        <h5>Referencia 3</h5>
+                        <div class="row col-12">
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="nombreRef3" type="text" id="firstName" class="form-control"
+                                        placeholder="Nombre">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="cargoRef3" type="text" id="firstName" class="form-control"
+                                        placeholder="Cargo">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="empresaRef3" type="text" id="firstName" class="form-control"
+                                        placeholder="Empresa">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+
+                                    <input formControlName="telefonoRef3" type="text" id="firstName"
+                                        class="form-control" placeholder="Teléfono">
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                        <!-- Fin cambio de diseño -->
+                        <div class="container fileUploadWrapper">
+                            <div class="row">
+                                <!-- Progress Bar -->
+                                <div class="col-md-12" *ngIf="progress">
+                                    <div class="progress form-group">
+                                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                            [style.width.%]="progress">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label class="text-danger" for="tipoDeArchivp">Por favor su hoja de vida debe ser
+                                        adjuntada en formato ".pdf" </label>
+                                    <div class="fileupload" appDragDropFileUpload (click)="fileField.click()"
+                                        (fileDropped)="upload($event)">
+                                        <span class="ddinfo">Presione aqui para subir tu hoja de vida</span>
+                                        <input type="file" accept=".pdf" name="avatars" #fileField
+                                            (change)="upload($event.target.files)" hidden multiple>
+
+                                    </div>
+
+
+
+
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="image-list" *ngFor="let file of fileArr; let i = index">
+                                        <div class="profile">
+                                            <img [src]="sanitize(file['url'])" alt="">
+                                        </div>
+                                        <p>{{file.item.name}}</p>
+                                    </div>
+                                    <p class="message">{{msg}}</p>
+                                </div>
+                            </div>
+                        </div>
+                           <!--/row-->
+
+                    <div class="alert alert-primary " role="alert ">
+                        <em class="text2">Es necesario llenar todos los campos para registrar tu hoja de vida
+                            posteriormente para publicar es obligatorio suscribirse a uno de nuestros planes para que tu
+                            perfil sea visible en el paso 3 estan nuestros planes.</em>
+                    </div>
+
+                    <br>
+                    <div class="row ">
+                        <div class="col text-danger  ">
+                            <p class="center" *ngIf="campoNoValido('nombre')">Debe llenar el campo nombre</p>
+                            <p class="center" *ngIf="campoNoValido('apellido')">Debe llenar el campo apellido</p>
+                            <p class="center" *ngIf="campoNoValido('cedula')">Debe llenar el campo cedula con sus 10
+                                digitos</p>
+                            <p class="center" *ngIf="campoNoValido('refSalarial')">Debe llenar el campo de referencia
+                                salarial cuanto aspira a ganar</p>
+                            <p class="center" *ngIf="campoNoValido('fechaNacimiento')">Debe seleccionar su fecha de
+                                nacimiento</p>
+
+                            <p class="center" *ngIf="campoNoValido('edad')">Debe indicar su edad </p>
+                            <p class="center" *ngIf="campoNoValido('genero')">Debe seleccionar un genero </p>
+                            <p class="center" *ngIf="campoNoValido('ocupacion')">Debe escribir su ocupación</p>
+                            <p class="center" *ngIf="campoNoValido('descripcion')">Debe poner una descripción</p>
+                            <p class="center" *ngIf="campoNoValido('categorias')">Debe seleccionar una categoria </p>
+
+                            <p class="center" *ngIf="campoNoValido('provincia')|| opcion == '0' ">Debe seleccionar una provincia</p>
+                            <p class="center" *ngIf="campoNoValido('ciudad')|| opcion1 == '0'" >Debe seleccionar una ciudad</p>
+                            <p class="center" *ngIf="campoNoValido('direccion')">Debe escribir una dirección o mover el marker del mapa </p>
+                            <p class="center" *ngIf="campoNoValido('experiencia')">Debe poner los años de experiencia</p>
+                            <p class="center" *ngIf="campoNoValido('descripcionExperiencia')">Debe poner una descripción de su experiencia</p>
+
+                            <p class="center" *ngIf="campoNoValido('nivelEducacion')">Debe seleccionar nivel de educación </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row m-0 justify-content-center align-items-center vh-100">
+                        <button  type="submit" class="btn btn-primary  mt-5" align="center">SIGUIENTE</button>
+                        &nbsp;&nbsp;
+
+
+                    </div>
+
+                </form>
+              </div>
+            </div>
+            <button   class="btn btn-primary  mt-5" align="center" (click)="next()">INICIAR</button>
+          </div>
+
+            <div id="test-l-2" class="content">
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="card caja0">
+                             
+                                    <tr *ngFor="let form of  formularios; let i = index" style="padding:2%">
+                                        <h5 class= "card-header" style="background: azure">Nº</h5>
+                                        <p class="card-text">{{i+1}}</p>
+                                        <h5 class= "card-header" style="background: azure">NOMBRE</h5>
+                                        <p class="card-text">{{form.nombre}}</p>
+                                        <h5 class= "card-header" style="background: azure">CEDULA</h5>
+                                        <p class="card-text">{{form.cedula}}</p>
+                                        <h5 class= "card-header" style="background: azure">CATEGORIA</h5>
+                                        <p class="card-text">{{form.categorias}}</p>
+                                        <h5 class= "card-header" style="background: azure">FECHA CREACIÓN</h5>
+                                        <p class="card-text">{{form.fechaReporte |date:'dd-MM-yyyy'}}</p>    
+                                        <h5 class= "card-header" style="background: azure">SALARIO</h5>
+                                        <p class="card-text">{{form.refSalarial}}</p>
+                                        <h5 class= "card-header" style="background: azure">ESTADO</h5>
+                                        <p class="card-text" [ngClass]="{'bg-primary text-white':form.estado=='PUBLICADO','bg-danger text-white':form.estado=='NO PUBLICADO'}">{{form.estado}}</p>
+                                        <h5 class= "card-header" style="background: azure">EDITAR</h5>
+                                        <p class="card-text">
+                                            <button type="button" class="btn btn-outline-primary"
+                                                       style="width: 75px;height: 70;font-size: 50%;"
+                                            [routerLink]="['/dashboard/hoja/',form._id]"><b>EDITAR</b></button>
+
+                                        </p>
+                                        <h5 class= "card-header" style="background: azure">PUBLICAR</h5>
+                                        <p  *ngFor="let plan of formu" >
+                                            <button type="button" class="btn btn-outline-primary"*ngIf="(plan.tipoPlan != null)"
+                                                       style="width: 75px;height: 70;font-size: 50%;"   (click)="updateEstado()"
+                                            ><b>PUBLICAR</b></button>
+                                        </p>
+                                    </tr>
+                                 
+                            <div  *ngFor="let plan of formu" class="alert alert-primary " role="alert ">
+                                <em *ngIf="(plan.tipoPlan =='Free')" class="text2">Suscribete a uno de nuestros planes para publicar tu hoja de
+                                    vida.</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row m-0 justify-content-center align-items-center vh-100">
+
+                    <button (click)="next()" class="btn btn-primary  mt-5" align="center">SIGUIENTE</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <br>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+            <div id="test-l-3" class="content text-center">
+
+
+<div class=" container p-3 " class="col-sm">
+    <h3 align="center" id="color">ESTÁS SUSCRITO A :</h3>
+</div>
+
+
+<div class="container" >
+    <div class="row  ">
+        <div class="card caja0">      
+            <tr *ngFor="let form of  formu ; let i = index" style="padding:2%">
+                 <h5 class= "card-header" style="background: azure">Nº</h5>
+                <p class="card-text">{{i+1}}</p>  
+                <h5 class= "card-header" style="background: azure">TÍPO DE PLAN</h5>
+                <p class="card-text">{{form.tipoPlan}}</p>
+                <h5 class= "card-header" style="background: azure" >FECHA SUCRIPCIÓN</h5>
+                <p class="card-text">{{form.fecha1 |date:'dd-MM-yyyy'}}</p>
+                <h5 class= "card-header" style="background: azure"  >FECHA VENCIMIENTO</h5>
+                <p class="card-text">{{form.fecha2 |date:'dd-MM-yyyy'}}</p>
+                <h5 class= "card-header" style="background: azure">VALOR</h5>
+                <p class="card-text">{{form.valor}}</p>
+            </tr>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<br>
+
+                <!-- Row -->
+                <div class="row m-0 justify-content-center align-items-center vh-100">
+                    <!-- column -->
+                    <div class="col-lg-3 col-md-6">
+                        <!-- Card -->
+                        <div class="card caja1">
+                            <img class="card-img-top img-responsive" src="../../../assets/images/jobcare.png"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title text" align="center">Free</h4>
+                                <ul class="text">
+                                    <li>
+                                        Acceso libre a toda la Plataforma
+                                    </li>
+                                    <li>
+                                        Perfil Visible para todos los empleadores
+                                    </li>
+                                    <li>
+                                        Acceso Masterclass
+                                    </li>
+
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <h4>Job & Care</h4>
+
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <h1 class="text">$ 0.00 </h1>
+                                </ul>
+                                <button class="btn btn-primary text-write " (click)="registrarPlan()">SUSCRIBIR</button>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    </div>
+                    <!-- column -->
+                    <!-- column -->
+                    <div class="col-lg-3 col-md-6">
+                        <!-- Card -->
+                        <div class="card caja2">
+                            <img class="card-img-top img-responsive" src="../../../assets/images/jobcare.png"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title text">Premium (3 meses)
+                                </h4>
+                                <ul class="text">
+                                    <li>
+                                        Publicidad Off
+                                    </li>
+                                    <li>
+                                        Perfil Destacado: Hacemos que tu perfil sea visible para quienes te buscan.
+                                    </li>
+                                    <li>
+                                        Descuento en todas las capacitaciones
+                                    </li>
+                                    <li>
+                                        Publicación en redes sociales
+                                    </li>
+                                    <li>
+                                        Recomendamos tu perfil a los empleadores
+                                    </li>
+
+                                    <li>
+                                        Acceso gratuito a nuestra capacitación (Entrevista de trabajo, como
+                                        superarla con éxito)
+                                    </li>
+
+
+
+                                    <h1 class="text">$ 5.99 </h1>
+
+
+                                </ul>
+
+                                <button class="btn btn-primary " (click)="producto1()">SUSCRIBIR</button>
+
+
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    </div>
+                    <!-- column -->
+                    <!-- column -->
+                    <div class="col-lg-3 col-md-6">
+                        <!-- Card -->
+                        <div class="card caja3">
+                            <img class="card-img-top img-responsive" src="../../../assets/images/jobcare.png"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title text">Premium (6 Meses)
+                                </h4>
+                                <ul class="text">
+                                    <li>
+                                        Publicidad Off
+                                    </li>
+                                    <li>
+                                        Perfil Destacado: Hacemos que tu perfil sea visible para quienes te buscan.
+                                    </li>
+                                    <li>
+                                        Descuento en todas las capacitaciones
+                                    </li>
+                                    <li>
+                                        Publicación en redes sociales
+                                    </li>
+                                    <li>
+                                        Recomendamos tu perfil a los empleadores
+                                    </li>
+
+                                    <li>
+                                        Acceso gratuito a nuestra capacitación (Entrevista de trabajo, como
+                                        superarla con éxito)
+                                    </li>
+
+
+                                    <h1 class="text">$ 9.99 </h1>
+                                </ul>
+
+                                <button class="btn btn-primary " (click)="producto2()">SUSCRIBIR</button>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    </div>
+                    <!-- column -->
+                    <div class="alert alert-primary " role="alert ">
+                        <em class="text2">Suscribete a uno de nuestros planes para publicar tu hoja de vida.</em>
+                    </div>
+                    <!-- column -->
+                </div>
+                <!-- Row -->
+
+                <div class="container"  *ngFor="let plan of formu" >
+                  <div class="row" *ngIf="(plan.tipoPlan != null)">
+                      <div class="card caja0">
+                                  <tr *ngFor="let form of  formularios; let i = index" style="padding:2%">
+                                      <h5 class= "card-header" style="background: azure">Nº</h5>
+                                      <p class="card-text">{{i+1}}</p>
+                                      <h5 class= "card-header" style="background: azure">NOMBRE</h5>
+                                      <p class="card-text">{{form.nombre}}</p>  
+                                      <h5 class= "card-header" style="background: azure">FECHA CREACIÓN</h5>
+                                      <p class="card-text">{{form.fechaReporte |date:'dd-MM-yyyy'}}</p>  
+                                      <h5 class= "card-header" style="background: azure">SALARIO</h5>
+                                      <p class="card-text">{{form.refSalarial}}</p>
+                                      <h5 class= "card-header" style="background: azure">ESTADO</h5>
+                                      <p class="card-text" [ngClass]="{'bg-primary text-white':form.estado=='PUBLICADO','bg-danger text-white':form.estado=='NO PUBLICADO'}">{{form.estado}}</p>
+                                      <h5 class= "card-header" style="background: azure">EDITAR</h5>
+                                      <p class="card-text">
+                                        <button type="button" class="btn btn-outline-primary"
+                                                   style="width: 75px;height: 70;font-size: 50%;"
+                                        [routerLink]="['/dashboard/hoja/',form._id]"><b>EDITAR</b></button>
+                                      </p>
+                                      <h5 class= "card-header" style="background: azure">PUBLICAR</h5>
+                                      <p class="card-text">
+                                        <button type="button" class="btn btn-outline-primary"
+                                                   style="width: 75px;height: 70;font-size: 50%;"   (click)="updateEstado()"
+                                        ><b>PUBLICAR</b></button>
+
+                                      </p>     
+                                    </tr>
+    
+                          <div  *ngFor="let plan of formu" class="alert alert-primary " role="alert ">
+                              <em *ngIf="(plan.tipoPlan =='Free')" class="text2">Suscribete a uno de nuestros planes para publicar tu hoja de
+                                  vida.</em>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+                <button (click)="previus()" class="btn btn-primary mt-5">ATRAS</button>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#56c2c6" type="ball-clip-rotate-multiple">
+        <p style="font-size: 20px; color: #56c2c6">Jobandcare...</p>
+    </ngx-spinner>
+</div>

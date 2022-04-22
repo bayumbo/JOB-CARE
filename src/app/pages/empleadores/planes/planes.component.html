@@ -1,0 +1,33 @@
+<div class=" container p-3 " class="col-sm">
+    <h3 align="center" id="color">PLANES DE SUSCRIPCIÓN</h3>
+</div>
+
+
+<div class="container " >
+    <div class="row ">
+
+            <div class="card caja0">
+
+
+                    <tr *ngFor="let form of  formularios ; let i = index" style="padding:2%">
+                        <h5 class= "card-header" style="background: azure">Nº</h5>
+                        <p class="card-text">{{i+1}}</p>
+                        <h5 class= "card-header" style="background: azure">TÍPO DE PLAN</h5>
+                        <p class="card-text">{{form.tipoPlan}}</p>
+                        <h5 class= "card-header" style="background: azure" >FECHA SUCRIPCIÓN</h5>
+                        <p class="card-text">{{form.fecha1 |date:'dd-MM-yyyy'}}</p>
+                        <h5 class= "card-header" style="background: azure"  >FECHA VENCIMIENTO</h5>
+                        <p class="card-text">{{form.fecha2 |date:'dd-MM-yyyy'}}</p>
+                        <h5 class= "card-header" style="background: azure">VALOR</h5>
+                        <p class="card-text">{{form.valor}}</p>
+
+
+                    </tr>
+
+            </div>
+
+
+    </div>
+</div>
+<br>
+<br>

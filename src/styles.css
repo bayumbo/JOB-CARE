@@ -1,0 +1,408 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+@import '~bs-stepper/dist/css/bs-stepper.min.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+#themecolors .selector {
+
+    cursor: pointer;
+}
+.w150 {
+  width: 150px;
+  
+  }
+
+  .w70 {
+    width: 70px;
+}
+
+.w50 {
+    width: 40px;
+}
+.img-50 {
+    width: 50px;
+}
+.pointer {
+    cursor: pointer;
+}
+
+#inputtito[type="radio"] {
+  display: none !important;
+}
+
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+
+#footer {
+    background: black;
+    padding: 0 0 30px 0;
+    color: #eee;
+    font-size: 14px;
+  }
+  
+  #footer .footer-top {
+    background: #56c2c6;
+    padding: 60px 0 30px 0;
+  }
+  
+  #footer .footer-top .footer-info {
+    margin-bottom: 30px;
+  }
+  
+  #footer .footer-top .footer-info h3 {
+    font-size: 34px;
+    margin: 0 0 20px 0;
+    padding: 2px 0 2px 0;
+    line-height: 1;
+    font-family: "Montserrat", sans-serif;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  
+  #footer .footer-top .footer-info p {
+    font-size: 13px;
+    line-height: 24px;
+    margin-bottom: 0;
+    font-family: "Montserrat", sans-serif;
+    color: #ecf5ff;
+  }
+  
+  #footer .footer-top .social-links a {
+    font-size: 18px;
+    display: inline-block;
+    background: white;
+    color: black;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+  }
+  
+  #footer .footer-top .social-links .twitter:hover {
+    background: rgb(0, 204, 255);
+    color: #fff;
+  }
+  
+  #footer .footer-top .social-links .facebook:hover {
+    background: blue;
+    color: #fff;
+  }
+  #footer .footer-top .social-links .instagran:hover {
+    background: rgb(255, 72, 0);
+    color: #fff;
+  }
+  #footer .footer-top .social-links .linkedin:hover {
+    background: rgb(64, 120, 224);
+    color: #fff;
+  }
+  
+  #footer .footer-top .social-links .whatsapp:hover {
+    background: rgb(0, 255, 0);
+    color: #fff;
+  }
+  
+  #footer .footer-top .social-links .twitter:hover {
+    background: rgb(0, 204, 255);
+    color: #fff;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  
+  #footer .footer-top .social-links .facebook:hover {
+    background: blue;
+    color: #fff;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  
+  #footer .footer-top .social-links .whatsapp:hover {
+    background: rgb(0, 255, 0);
+    color: #fff;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  
+  #footer .footer-top h4 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  #footer .footer-top .footer-links {
+    margin-bottom: 30px;
+  }
+  
+  #footer .footer-top .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #footer .footer-top .footer-links ul li {
+    padding: 8px 0;
+  }
+  
+  #footer .footer-top .footer-links ul li:first-child {
+    padding-top: 0;
+  }
+  
+  #footer .footer-top .footer-links ul a {
+    color: #ecf5ff;
+  }
+  
+  #footer .footer-top .footer-links ul li:hover {
+    color: #ca1a1a;
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+  
+  #footer .footer-top .footer-links ul a:hover {
+    color: #d1d8da;
+  }
+  
+  #footer .footer-top .footer-contact {
+    margin-bottom: 30px;
+  }
+  
+  #footer .footer-top .footer-contact p {
+    line-height: 26px;
+  }
+  
+  #footer .footer-top .footer-newsletter {
+    margin-bottom: 30px;
+  }
+  
+  #footer .footer-top .footer-newsletter input[type="email"] {
+    border: 0;
+    padding: 6px 8px;
+    width: 65%;
+  }
+  
+  #footer .footer-top .footer-newsletter input[type="submit"] {
+    background: #007bff;
+    border: 0;
+    width: 35%;
+    padding: 6px 0;
+    text-align: center;
+    color: #fff;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  
+  #footer .footer-top .footer-newsletter input[type="submit"]:hover {
+    background: #0062cc;
+  }
+  
+  #footer .copyright {
+    text-align: center;
+    padding-top: 30px;
+  }
+  
+  #footer .credits {
+    text-align: center;
+    font-size: 13px;
+    color: #f1f7ff;
+  }
+  
+  #footer .credits a {
+    color: #bfddfe;
+  }
+  
+  #footer .credits a:hover {
+    color: #f1f7ff;
+  }
+
+
+  
+  @media (max-width: 991px) {
+    #header {
+      height: 60px;
+      padding: 10px 0;
+    }
+    #services .box1 {
+      left: 55%;
+    }
+  
+    #header .logo h1 {
+      font-size: 20px;
+      padding: 10px 0;
+    }
+  
+    #intro {
+      padding: 140px 0 60px 0;
+    }
+  
+    #intro .intro-img {
+      width: 80%;
+      float: none;
+      margin: 0 auto 50px auto;
+    }
+  
+    #intro .intro-info {
+      width: 80%;
+      float: none;
+      margin: auto;
+      text-align: center;
+    }
+  
+    #why-us .card {
+      margin: 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .back-to-top {
+      bottom: 15px;
+    }
+    #services .box1 {
+      left: 0;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    #intro .intro-info {
+      width: 100%;
+    }
+    #services .box1 {
+      left: 0;
+    }
+  
+    #intro .intro-info h2 {
+      font-size: 34px;
+      margin-bottom: 30px;
+    }
+  
+    .section-header p {
+      width: 100%;
+    }
+  
+    #testimonials .testimonial-item {
+      text-align: center;
+    }
+  
+    #testimonials .testimonial-item .testimonial-img {
+      float: none;
+      margin: auto;
+    }
+  
+    #testimonials .testimonial-item h3,
+    #testimonials .testimonial-item h4,
+    #testimonials .testimonial-item p {
+      margin-left: 0;
+    }
+  }
+  
+  @media (max-width: 574px) {
+    #intro {
+      padding: 100px 0 20px 0;
+    }
+    #services .box1 {
+      left: 0;
+    }
+  }
+  
+  #iconoWhatsappModal{
+    position: fixed; 
+    right: 80px
+  }
+  
+
+  /* estilo subida de imagenes drog */
+
+.progress {
+  margin-bottom: 30px;
+}
+
+.fileupload {
+  background-image: url("./assets/upload-icon.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  background-color: #ffffff;
+  height: 200px;
+  width: 100%;
+  cursor: pointer;
+  /* border: 2px dashed #0f68ff; */
+  border-radius: 6px;
+  margin-bottom: 25px;
+  background-position: center 28px;
+}
+
+.ddinfo {
+  display: block;
+  text-align: center;
+  padding-top: 130px;
+  color: #05090c;
+}
+
+.image-list {
+  display: flex;
+  width: 100%;
+  background: #C2DFFC;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 10px 10px 10px 15px;
+  margin-bottom: 10px;
+}
+
+.image-list p {
+  line-height: normal;
+  padding: 0;
+  margin: 0 0 0 14px;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  color: #150938;
+  font-size: 14px;
+}
+
+.message {
+  text-align: center;
+  color: rgb(7, 190, 31);
+}
+
+.remove {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.profile {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.profile img {
+  width: 100%;
+}
+
+.remove img {
+  width: 15px;
+  position: relative;
+  top: -2px;
+}
+
+.fileUploadWrapper .card-body {
+  max-height: 330px;
+  overflow: hidden;
+  overflow-y: auto;
+}

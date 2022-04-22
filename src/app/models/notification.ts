@@ -1,0 +1,15 @@
+import { Usuario } from "./usuario.model";
+
+
+export class Notification {
+
+    _id : string;
+    title: string;
+    detalle: string;
+    view: boolean;
+    fechaReporte: string;
+    uri: string;
+    trasmitter: Usuario
+    receiver: Usuario
+
+}

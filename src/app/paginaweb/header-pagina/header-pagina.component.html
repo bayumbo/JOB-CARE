@@ -1,0 +1,199 @@
+<!--==========================
+  Header
+  ============================-->
+
+  <header id="header" class="fixed-top">
+    <!-- NAV -->
+    <div class="container" id="nav">
+
+      <a href="#/inicio" (click)="UrlInicio()"style="width: 50px; position: relative; top:5px; right: 5%;"  >
+
+        <h3  href="#/inicio" class="animated " style="color: #56c2c6 " (click)="UrlInicio()">
+          <i  href="#/inicio" (click)="UrlInicio()"><img   href="#/inicio" (click)="UrlInicio()" class="img-responsive " src="../../../assets/images/jobcare.png" alt=""></i><img (click)="UrlInicio()" src="../../../assets/images/text-logo.png" alt="">
+        </h3></a>
+      <!-- Top Nav -->
+      <div id="nav-top">
+
+          <!-- /logo -->
+        <div class="container">
+
+          <!-- search & aside toggle -->
+          <div class="nav-btns">
+            <button class="aside-btn"><i class="fa fa-bars fa-2x"></i></button>
+            <div id="nav-search">
+              <!--<button class="nav-close search-close">
+                <span>X</span>
+              </button>-->
+            </div>
+          </div>
+          <!-- /search & aside toggle -->
+        </div>
+      </div>
+      <!-- /Top Nav -->
+      <!-- Main Nav -->
+      <div id="nav-bottom" >
+        <div class="container" >
+
+
+          <!-- nav -->
+          <ul class="nav-menu">
+            <li><a id="activo" (click)="tour()"  class="active">GUIA MENU</a></li>
+            <li><a joyrideStep="6" title="OFERTAS" text="En esta sección encuentras las ofertas disponibles en todas las categorias" id="activo" href="#/ofertaEmpleo" (click)="UrlOfertas()"  class="active">VER OFERTAS</a></li>
+     <!--        <li><a joyrideStep="5" title="PERFILES" text="En esta sección seleccionas algun perfil de empleado para contratar" id="activo" href="#/perfilEmpleados" (click)="UrlPerfil()"  class="active">PERFILES</a></li> -->
+
+            <li class="has-dropdown megamenu">
+              <a joyrideStep="4" title="Bienvenido" text="En esta sección seleccionas la categoria para encontrar empleo o publicar">CATEGORIAS</a>
+
+              <div class="dropdown">
+                <div class="dropdown-body">
+                  <div class="row" id="pruebaDiv">
+                    <div class="col-md-4">
+                      <h4 class="dropdown-heading">PUBLICAR EMPLEO</h4>
+                      <ul class="dropdown-list">
+                        <li *ngIf="servicioNav == true"><a href="#/nineraEmpleador"           >Niñera</a></li>
+                        <li *ngIf="servicioNav == true"><a href="#/cuidadoAdultoEmpleador"    >Cuidado del adulto mayor</a></li>
+                        <li *ngIf="servicioNav == true"><a href="#/domesticoEmpleador"        >Servicio Doméstico</a></li>
+                        <li *ngIf="servicioNav == true"><a href="#/mascotaEmpleador"          >Cuidado de mascotas</a></li>
+                        <li *ngIf="servicioNav == true"><a href="#/spaEmpleador"              >Spa</a></li>
+                        <li *ngIf="servicioNav == true"><a href="#/capacidadesEmpleador"      >Cuidados capacidades Especiales</a></li>
+                        <li *ngIf="servicioNav == true"><a href="#/tutoriasEmpleador"         >Tutorías escolares</a></li>
+                        <li *ngIf="servicioNav == true"><a href="#/trabajosEmpleador"         >Trabajos del hogar</a></li>
+                        <li *ngIf="servicioNav == true"><a href="#/asistenciaEmpleador"       >Asistencia automotriz</a></li>
+                        <li *ngIf="servicioNav == true"><a href="#/mensajeriaEmpleador"       >Mensajería</a></li>
+                        <li *ngIf="servicioNav == true"><a href="#/profesionalEmpleador"      >Profesionales Titulados</a></li>
+                         <!--DIVISION-->
+                        <li *ngIf="servicioNav == false"><a href="#/nineraEmpleador"         (click)="presionar()"   >Niñera</a></li>
+                        <li *ngIf="servicioNav == false"><a href="#/cuidadoAdultoEmpleador"  (click)="presionar1()"  >Cuidado del adulto mayor</a></li>
+                        <li *ngIf="servicioNav == false"><a href="#/domesticoEmpleador"(click)="presionar2()"   >Servicio Doméstico</a></li>
+                        <li *ngIf="servicioNav == false"><a href="#/mascotaEmpleador"(click)="presionar3()"  >Cuidado de mascotas</a></li>
+                        <li *ngIf="servicioNav == false"><a href="#/spaEmpleador" (click)="presionar4()"        >Spa</a></li>
+                        <li *ngIf="servicioNav == false"><a href="#/capacidadesEmpleador" (click)="presionar5()" >Cuidados capacidades Especiales</a></li>
+                        <li *ngIf="servicioNav == false"><a href="#/tutoriasEmpleador" (click)="presionar6()"    >Tutorías escolares</a></li>
+                        <li *ngIf="servicioNav == false"><a href="#/trabajosEmpleador"  (click)="presionar7()"   >Trabajos del hogar</a></li>
+                        <li *ngIf="servicioNav == false"><a href="#/asistenciaEmpleador"(click)="presionar8()"  >Asistencia automotriz</a></li>
+                        <li *ngIf="servicioNav == false"><a href="#/mensajeriaEmpleador"(click)="presionar9()"   >Mensajería</a></li>
+                        <li *ngIf="servicioNav == false"><a href="#/profesionalEmpleador"(click)="presionar10()"  >Profesionales Titulados</a></li>
+
+                      </ul>
+                    </div>
+                    <div class="col-md-4">
+                      <h4 class="dropdown-heading">ENCONTRAR EMPLEO</h4>
+                      <ul class="dropdown-list">
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/ninera']" routerLinkActive="router-link-active" >Niñera</a></li>
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/cuidadoAdulto']" routerLinkActive="router-link-active" >Cuidado del adulto mayor</a></li>
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/domestico']" routerLinkActive="router-link-active" >Servicio Doméstico</a></li>
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/mascota']" routerLinkActive="router-link-active" >Cuidado de mascotas</a></li>
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/spa']" routerLinkActive="router-link-active" >Spa</a></li>
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/capacidades']" routerLinkActive="router-link-active" >Cuidados capacidades Especiales</a></li>
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/tutorias']" routerLinkActive="router-link-active" >Tutorías escolares</a></li>
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/trabajos']" routerLinkActive="router-link-active" >Trabajos del hogar</a></li>
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/asistencia']" routerLinkActive="router-link-active" >Asistencia automotriz</a></li>
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/mensajeria']" routerLinkActive="router-link-active" >Mensajería</a></li>
+                        <li *ngIf="servicioNav == true"><a [routerLink]="['/profesional']" routerLinkActive="router-link-active" >Profesionales Titulados</a></li>
+                         <!--DIVISION-->
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/ninera']" routerLinkActive="router-link-active">Niñera</a></li>
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/cuidadoAdulto']" routerLinkActive="router-link-active">Cuidado del adulto mayor</a></li>
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/domestico']" routerLinkActive="router-link-active">Servicio Doméstico</a></li>
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/mascota']" routerLinkActive="router-link-active">Cuidado de mascotas</a></li>
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/spa']" routerLinkActive="router-link-active">Spa</a></li>
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/capacidades']" routerLinkActive="router-link-active">Cuidados capacidades Especiales</a></li>
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/tutorias']" routerLinkActive="router-link-active">Tutorías escolares</a></li>
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/trabajos']" routerLinkActive="router-link-active">Trabajos del hogar</a></li>
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/asistencia']" routerLinkActive="router-link-active">Asistencia automotriz</a></li>
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/mensajeria']" routerLinkActive="router-link-active">Mensajería</a></li>
+                        <li *ngIf="servicioNav == false"><a  [routerLink]="['/profesional']" routerLinkActive="router-link-active">Profesionales Titulados</a></li>
+                      </ul>
+                    </div>
+
+                    <div class="col-md-3" >
+                      <br><br><br>
+                      <div class="post post-sm">
+                        <a class="post-img" [routerLink]="[]"><img src="../../../assets/images/jobcare.png"
+                            style="height: 200px"></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li><a [routerLink]="['/cursos']" routerLinkActive="router-link-active" joyrideStep="3" title="Cursos"text="En esta sección  encuentras los cursos disponibles" (click)="presionar11()">CAPACÍTATE</a></li>
+            <li class="has-dropdown">
+              <a joyrideStep="2" title="Login"text="Aqui puedes registrarte para publicar un empleo o buscar un empleo segun la categoria que necesites">REGISTRARSE</a>
+              <div class="dropdown">
+                <div class="dropdown-body" style="text-align: center">
+
+                  <ul class="dropdown-list">
+                    <li *ngIf="activeNav == true"><a [routerLink]="['/home2']" routerLinkActive="router-link-active" >PUBLICAR EMPLEO</a></li>
+                    <li *ngIf="activeNav == true"><a [routerLink]="['/home']" routerLinkActive="router-link-active" >ENCONTRAR EMPLEO</a></li>
+
+
+
+                    <li *ngIf="activeNav == false"><a [routerLink]="['/home2']" routerLinkActive="router-link-active" >PUBLICAR EMPLEO</a></li>
+                    <li *ngIf="activeNav == false"><a [routerLink]="['/home']" routerLinkActive="router-link-active" >ENCONTRAR EMPLEO</a></li>
+
+
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li><a [routerLink]="['/login']" routerLinkActive="router-link-active"  joyrideStep="1" title="Login"text="Si estas registrado puedes iniciar sesión" (click)="UrlLogingin() ">INGRESAR</a></li>
+              <!---->
+
+
+          </ul>
+          <!-- /nav -->
+        </div>
+      </div>
+      <!-- /Main Nav -->
+
+      <!-- Aside Nav -->
+      <div id="nav-aside">
+        <ul class="nav-aside-menu">
+          <li><a href="#/login" (click)="UrlLogingin()" >LOGIN</a></li>
+          <li><a href="#/inicio" (click)="UrlInicio()" >INICIO</a></li>
+          <li><a  href="#/ofertaEmpleo" (click)="UrlOfertas()">VER OFERTAS</a></li>
+      <!--     <li><a  href="#/perfilEmpleados" (click)="UrlPerfil()" >PERFILES</a></li> -->
+
+          <li class="has-dropdown"><a onclick="desplazar()">ENCONTRAR EMPLEO</a>
+            <ul class="dropdown">
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/ninera']" routerLinkActive="router-link-active">Niñera</a></li>
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/cuidadoAdulto']" routerLinkActive="router-link-active">Cuidado del adulto mayor</a></li>
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/domestico']" routerLinkActive="router-link-active">Servicio Doméstico</a></li>
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/mascota']" routerLinkActive="router-link-active">Cuidado de mascotas</a></li>
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/spa']" routerLinkActive="router-link-active">Spa</a></li>
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/capacidades']" routerLinkActive="router-link-active">Cuidados capacidades Especiales</a></li>
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/tutorias']" routerLinkActive="router-link-active">Tutorías escolares</a></li>
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/trabajos']" routerLinkActive="router-link-active">Trabajos del hogar</a></li>
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/asistencia']" routerLinkActive="router-link-active">Asistencia automotriz</a></li>
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/mensajeria']" routerLinkActive="router-link-active">Mensajería</a></li>
+              <li *ngIf="servicioNav == false"><a  [routerLink]="['/profesional']" routerLinkActive="router-link-active">Profesionales Titulados</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown"><a onclick="desplazar()">PUBLICAR EMPLEO</a>
+            <ul class="dropdown">
+              <li ><a href="#/nineraEmpleador"         (click)="presionar()"   >Niñera</a></li>
+              <li ><a href="#/cuidadoAdultoEmpleador"  (click)="presionar1()"  >Cuidado del adulto mayor</a></li>
+              <li ><a href="#/domesticoEmpleador"(click)="presionar2()"   >Servicio Doméstico</a></li>
+              <li ><a href="#/mascotaEmpleador"(click)="presionar3()"  >Cuidado de mascotas</a></li>
+              <li ><a href="#/spaEmpleador" (click)="presionar4()"        >Spa</a></li>
+              <li ><a href="#/capacidadesEmpleador" (click)="presionar5()" >Cuidados capacidades Especiales</a></li>
+              <li ><a href="#/tutoriasEmpleador" (click)="presionar6()"    >Tutorías escolares</a></li>
+              <li ><a href="#/trabajosEmpleador"  (click)="presionar7()"   >Trabajos del hogar</a></li>
+              <li ><a href="#/asistenciaEmpleador"(click)="presionar8()"  >Asistencia automotriz</a></li>
+              <li ><a href="#/mensajeriaEmpleador"(click)="presionar9()"   >Mensajería</a></li>
+              <li ><a href="#/profesionalEmpleador"(click)="presionar10()"  >Profesionales Titulados</a></li>
+            </ul>
+          </li>
+          <!--li><a href="#/contacto" (click)="UrlContacto()" >CONTÁCTANOS</a></li-->
+        </ul>
+        <button class="nav-close nav-aside-close" onclick="quitar()"><span></span></button>
+      </div>
+      <!-- /Aside Nav -->
+    </div>
+    <!-- /NAV -->
+  </header>
+  <!-- /HEADER -->
+  <br>
+  <br>
+  <br>

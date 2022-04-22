@@ -1,0 +1,182 @@
+
+<div class=" container p-3 " class="col-sm">
+    <h3 align="center" id="color">PLANES DE SUSCRIPCIÓN</h3>
+</div>
+
+
+<div class="container" >
+    <div class="row  ">
+        <div class="card caja0">      
+            <tr *ngFor="let form of  formularios ; let i = index" style="padding:2%">
+                <!--<h5 class= "card-header" style="background: azure">Nº</h5>
+                <p class="card-text">{{i+1}}</p>--> 
+                <h5 class= "card-header" style="background: azure">TÍPO DE PLAN</h5>
+                <p class="card-text">{{form.tipoPlan}}</p>
+                <h5 class= "card-header" style="background: azure" >FECHA SUCRIPCIÓN</h5>
+                <p class="card-text">{{form.fecha1 |date:'dd-MM-yyyy'}}</p>
+                <h5 class= "card-header" style="background: azure"  >FECHA VENCIMIENTO</h5>
+                <p class="card-text">{{form.fecha2 |date:'dd-MM-yyyy'}}</p>
+                <h5 class= "card-header" style="background: azure">VALOR</h5>
+                <p class="card-text">{{form.valor}}</p>
+            </tr>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <!-- Row -->
+     <div class="row m-0 justify-content-center align-items-center vh-100">
+        <!-- column -->
+        <div class="col-lg-3 col-md-6">
+            <!-- Card -->
+            <div class="card caja1">
+                <img class="card-img-top img-responsive" src="../../../assets/images/jobcare.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title text"align="center">Free</h4>
+                    <ul class="text">
+                        <li >
+                            Acceso libre a toda la Plataforma
+                        </li>
+                        <li>
+                        	Perfil Visible para todos los empleadores
+                        </li>
+                        <li>
+                            Acceso Masterclass
+                        </li>
+                       
+                        <br>
+                         <br>
+                         <br>
+                         <br>
+                         <br>
+                         <br>
+                         <h4>Job & Care</h4>
+                      
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    
+                   
+                       
+                        <li hidden>
+                         espacio
+                        </li >
+                        <li hidden>
+                         espacio
+                        </li>
+                        <br>
+                        <h1 class="text">$ 0.00 </h1>
+                       <!--  <button   class="btn btn-primary text-write "(click)="registrarPlan()" >SUSCRIBIR</button>-->
+                    </ul>
+               
+                </div>
+            </div>
+            <!-- Card -->
+        </div>
+        <!-- column -->
+        <!-- column -->
+        <div class="col-lg-3 col-md-6">
+            <!-- Card -->
+            <div class="card caja2">
+                <img class="card-img-top img-responsive" src="../../../assets/images/jobcare.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title text">Premium (3 meses)
+                        </h4>
+                   <ul class="text">
+                       <li>
+                        Publicidad Off
+                       </li>
+                       <li>
+                        Perfil Destacado: Hacemos que tu perfil sea visible para quienes te buscan. 
+                       </li>
+                       <li>
+                        Descuento en todas las capacitaciones
+                       </li>
+                       <li>
+                        Publicación en redes sociales
+                       </li>
+                       <li>
+                        Recomendamos tu perfil a los empleadores
+                       </li>
+
+                       <li>
+                        Acceso gratuito a nuestra capacitación   (Entrevista de trabajo, como superarla con éxito)
+                       </li>
+
+                       <br>
+                        
+                       <h1 class="text">$ 5.99 </h1>
+                         
+                       <!--   <button  class="btn btn-primary "(click)="producto1()">SUSCRIBIR</button>-->
+                
+                   </ul>
+                  
+             
+                  
+                </div>
+            </div>
+            <!-- Card -->
+        </div>
+        <!-- column -->
+        <!-- column -->
+        <div class="col-lg-3 col-md-6">
+            <!-- Card -->
+            <div class="card caja3">
+                <img class="card-img-top img-responsive" src="../../../assets/images/jobcare.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title text">Premium (6 Meses)
+                        </h4>
+                        <ul class="text">
+                               <li>
+                                Publicidad Off
+                               </li>
+                               <li>
+                                Perfil Destacado: Hacemos que tu perfil sea visible para quienes te buscan. 
+                               </li>
+                               <li>
+                                Descuento en todas las capacitaciones
+                               </li>
+                               <li>
+                                Publicación en redes sociales
+                               </li>
+                               <li>
+                                Recomendamos tu perfil a los empleadores
+                               </li>
+        
+                               <li>
+                                Acceso gratuito a nuestra capacitación   (Entrevista de trabajo, como superarla con éxito)
+                               </li>
+                               <br>
+                      
+                            <h1 class="text">$ 9.99 </h1>
+                          <!--   <button  class="btn btn-primary "(click)="producto2()">SUSCRIBIR</button>-->
+                        </ul>
+                       
+                 
+                </div>
+            </div>
+            <!-- Card -->
+        </div>
+        <!-- column -->
+
+        <!-- column -->
+    </div>
+    <!-- Row -->
+
+

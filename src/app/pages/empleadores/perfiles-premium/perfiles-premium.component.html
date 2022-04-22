@@ -1,0 +1,106 @@
+
+
+
+
+
+
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row animated fadeIn">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="row animated fadeIn m-0 justify-content-center align-items-center vh-100 ">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+
+                                            <!--     <input #input (keyup)="buscarHoja( input.value )" type="text" class="form-control" placeholder="Buscar ofertas según tu categoria..."> -->
+                                            <div>
+
+                                              <select class="form-control text-uppercase has-dropdown" name="tipo" #input (change)="buscarHoja( input.value )">
+                                                <option value="">TODAS LAS CATEGORIAS</option>
+                                                <option value="NIÑERAS">NIÑERAS</option>
+                                                <option value="CUIDADO ADULTO MAYOR">CUIDADO ADULTO MAYOR</option>
+                                                <option value="SERVICIO DOMESTICO">SERVICIO DOMESTICO</option>
+                                                <option value="CUIDADO DE MASCOTAS">CUIDADO DE MASCOTAS</option>
+                                                <option value="CUIDADOS CAPACIDADES ESPECIALES">CUIDADOS CAPACIDADES ESPECIALES</option>
+                                                <option value="TUTORIAS ESCOLARES">TUTORIAS ESCOLARES</option>
+                                                <option value="TRABAJOS DEL HOGAR">TRABAJOS DEL HOGAR</option>
+                                                <option value="ASISTENCIA AUTOMOTRIZ">ASISTENCIA AUTOMOTRIZ</option>
+                                                <option value="MENSAJERIA">MENSAJERIA</option>
+                                                <option value="SPA">SPA</option>
+                                                <option value="OTROS">OTROS</option>
+                                                <option value="PROFESIONALES TITULADOS">PROFESIONALES TITULADOS</option>
+                                              </select>
+
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class=" container p-3 " class="col-sm">
+                                    <h3 align="center" id="color">PERFILES PREMIUM PUBLICADOS</h3>
+                                </div>
+
+                                <div class="row animated fadeIn" *ngIf="cargando">
+
+                                    <div class="col-sm-12">
+
+                                        <div class="alert alert-warning text-center">
+                                            <strong>Cargando</strong>
+                                            <br>
+                                            <i class="fa fa-refresh fa-spin fa-2x"></i>
+                                            <br>
+                                            <span>Espere por favor</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3" style="max-width: 100%;" *ngFor="let form of  formularios | paginate: { itemsPerPage: 5, currentPage: totalRegistros }">
+                                    <div class="row g-0">
+                                    <div style="text-align: center;" class="col-md-4">
+                                        <img [src]="form.usuario.img |imagen" class="img-50 img-circle pointer">
+                                        <br>
+                                        <h2 style="text-align: center;" class="card-title">{{form.nombre}} {{form.apellido}}</h2>
+                                        <p style="text-align: center;" class="card-text">
+                                            <span *ngIf="form.rating==1">⭐</span>
+                                            <span *ngIf="form.rating==2">⭐⭐</span>
+                                            <span *ngIf="form.rating==3">⭐⭐⭐</span>
+                                            <span *ngIf="form.rating==4">⭐⭐⭐⭐</span>
+                                            <span *ngIf="form.rating==5">⭐⭐⭐⭐⭐</span>
+                                            <br>
+                                            <span *ngIf="form.rating==1">NO RECOMENDADO</span>
+                                            <span *ngIf="form.rating==2">REGULAR</span>
+                                            <span *ngIf="form.rating==3">BUENO</span>
+                                            <span *ngIf="form.rating==4">MUY BUENO</span>
+                                            <span *ngIf="form.rating==5">EXCELENTE</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                        <h3>Descripción de la oferta</h3>
+                                        <p style="text-align: justify;line-height: 17px;" class="card-text">{{form.descripcion}}</p>
+                                        <p class="card-text">{{form.categorias}}</p>
+                                        <p class="card-text">{{form.ciudad}}</p>
+                                        <p class="card-text">{{form.telefonohoja}}</p>
+                                        <div class="row g-0">
+                                            <div class="col-md-12" style="margin-top:1%">
+                                                <button type="button" class="btn btn-outline-primary boton" (click)="calificando(form._id,form.usuario, form.emailHoja)"><b>Quieres contactar</b></button>
+                                            </div>      
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+            </div>
+        </div>
+    </div>
+    <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+</div>

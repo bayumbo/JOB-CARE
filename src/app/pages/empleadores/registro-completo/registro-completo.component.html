@@ -1,0 +1,927 @@
+<!-- Row -->
+<div class="row">
+
+
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header bg-primary">
+        <h4 class="m-b-0 text-white">DATOS DE REGISTRO</h4>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-body">
+
+            <div class="row p-t-20">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Usuario</label>
+                  <input type="text" id="firstName" class="form-control" placeholder="Usuario"
+                    [(ngModel)]="usuarioModelo.usuario" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Correo</label>
+                  <input type="email" id="firstName" class="form-control" placeholder="Correo"
+                    [(ngModel)]="usuarioModelo.email" [ngModelOptions]="{standalone: true}" disabled>
+                </div>
+              </div>
+
+            </div>
+            <!--/row-->
+            <div class="row p-t-20">
+              <div class="col-md-6">
+                <div class="form-group has-success">
+                  <label class="control-label">PROVINCIA</label>
+                  <select name="Provincia" class="browser-default custom-select form-control"
+                    [(ngModel)]="usuarioModelo.provincia" [ngModelOptions]="{standalone: true}"
+                    (change)="selectProvincia($event.target.value)">
+                    <option value="0">Seleccione una provincia</option>
+                    <option *ngFor="let prov of ciuadadesOpcion" value="{{prov.provincia}}">
+                      {{prov.provincia}}</option>
+                  </select>
+                </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-6">
+                <div class="form-group has-success">
+                  <label class="control-label">CIUDAD</label>
+                  <select name="Ciudad" class="browser-default custom-select form-control"
+                    [(ngModel)]="usuarioModelo.ciudad" [ngModelOptions]="{standalone: true}">
+                    <option value="0">Seleccione una ciudad</option>
+                    <option *ngFor="let canton of ciudad.cantones" value="{{canton}}">
+                      {{canton}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <!--/span-->
+            </div>
+            <!--/row-->
+            <div class="row p-t-20">
+
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Mi Dirección</label>
+                  <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                    placeholder="Buscar mi ubicación" autocorrect="off" autocapitalize="off"
+                    [(ngModel)]="usuarioModelo.direccion" [ngModelOptions]="{standalone: true}" spellcheck="off"
+                    type="text" #search>
+
+                </div>
+
+                <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                  <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                    (dragEnd)="markerDragEnd($event)"></agm-marker>
+                </agm-map>
+                <br>
+              </div>
+
+
+
+
+            </div>
+
+            <div class="row p-t-20">
+
+
+              <div class="col-md-12">
+                <div>
+                  <label class="control-label">Categoria</label>
+                  <select class="form-control custom-select" data-placeholder="CATEGORIAS" [formControl]="selected"
+                    [(ngModel)]="usuarioModelo.categorias" tabindex="1">
+                    <option value="NIÑERAS">NIÑERAS</option>
+                    <option value="CUIDADO ADULTO MAYOR">CUIDADO ADULTO MAYOR</option>
+                    <option value="SERVICIO DOMESTICO">SERVICIO DOMESTICO</option>
+                    <option value="CUIDADO DE MASCOTAS">CUIDADO DE MASCOTAS</option>
+                    <option value="CUIDADOS CAPACIDADES ESPECIALES">CUIDADOS CAPACIDADES ESPECIALES</option>
+                    <option value="TUTORIAS ESCOLARES">TUTORIAS ESCOLARES</option>
+                    <option value="TRABAJOS DEL HOGAR">TRABAJOS DEL HOGAR</option>
+
+                    <option value="ASISTENCIA AUTOMOTRIZ">ASISTENCIA AUTOMOTRIZ</option>
+                    <option value="MENSAJERIA">MENSAJERIA</option>
+                    <option value="SPA">SPA</option>
+                    <option value="PROFESIONALES TITULADOS">PROFESIONALES TITULADOS</option>
+                    <option value="OTROS">OTROS</option>
+                  </select>
+                </div>
+              </div>
+
+
+              <!--CATEGORIA NIÑERAS-->
+              <div  *ngIf="mostrar">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+                 <div>
+
+                  <div class="form-group">
+                    <div>
+                      <div class="row m-0 justify-content-center align-items-center vh-100">
+
+                        <div *ngFor="let item of usuarioModelo.ninos">
+
+
+                          <div>
+                            <label >Edad</label>
+                            <input type="number"  class="form-control"  [(ngModel)]="item.edad" [ngModelOptions]="{standalone: true}" />
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                          </div>
+                          &nbsp;&nbsp;
+
+
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-5"[(ngModel)]="item.masculino" [ngModelOptions]="{standalone: true}"
+                         >
+                          <label for="minimal-checkbox-5"  >M</label>
+                          &nbsp;&nbsp;
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-6"[(ngModel)]="item.femenino" [ngModelOptions]="{standalone: true}"
+                           >
+                          <label for="minimal-checkbox-6" >F</label>
+
+
+                        </div>
+
+                      </div>
+                     </div>
+
+                    <div class="form-group">
+                      <label  >¿Cuanta experiencia tienes?</label>
+                      <br>
+                      <input type="text" class="form-control col-6" placeholder="Tiempo de experiencia requerida" [(ngModel)]="usuarioModelo.experiencia"[ngModelOptions]="{standalone: true}" />
+
+
+                    </div>
+
+                  </div>
+
+                </div>
+                <div>
+                  <h2 align="center">Tipo de Cuidado</h2>
+                  <br>
+                  <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+
+                    <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+                      <div class="input-group ">
+                        <ul class="icheck-list" class="list">
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-1"  [(ngModel)]="usuarioModelo.lavado"[ngModelOptions]="{standalone: true}">
+                            <label for="minimal-checkbox-1">Lavado de Ropa de bebe </label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-2" [(ngModel)]="usuarioModelo.comida"[ngModelOptions]="{standalone: true}">
+                            <label for="minimal-checkbox-2">Comida</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-3" [(ngModel)]="usuarioModelo.tareas"[ngModelOptions]="{standalone: true}">
+                            <label for="minimal-checkbox-3">Tareas menores</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-4"[(ngModel)]="usuarioModelo.limpieza"[ngModelOptions]="{standalone: true}"
+                              >
+                            <label for="minimal-checkbox-4">Limpieza</label>
+                          </li>
+
+                        </ul>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+
+
+
+              </div>
+
+
+              <!--FIN CATEGORIA NIÑERAS-->
+
+
+              <!--CATEGORIA CUIDADO ADULTO MAYOR-->
+              <div    *ngIf="mostrar2">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <div>
+                    <div class="row m-0 justify-content-center align-items-center vh-100">
+
+                      <div *ngFor="let item of usuarioModelo.adulto">
+
+
+                        <div>
+                          <label >Edad</label>
+                          <input type="number"  class="form-control"  [(ngModel)]="item.edad" [ngModelOptions]="{standalone: true}" />
+                          &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                        </div>
+                        &nbsp;&nbsp;
+
+
+                        <input type="checkbox" class="check form-control" id="minimal-checkbox-50"[(ngModel)]="item.masculino" [ngModelOptions]="{standalone: true}"
+                       >
+                        <label for="minimal-checkbox-50"  >M</label>
+                        &nbsp;&nbsp;
+                        <input type="checkbox" class="check form-control" id="minimal-checkbox-60"[(ngModel)]="item.femenino" [ngModelOptions]="{standalone: true}"
+                         >
+                        <label for="minimal-checkbox-60" >F</label>
+
+
+                      </div>
+
+                    </div>
+                   </div>
+                  <br>
+                  <br>
+                  <div class="form-group">
+
+                    <input type="text" class="form-control col-6" placeholder="Tiempo de experiencia requerida" [(ngModel)]="usuarioModelo.experiencia"[ngModelOptions]="{standalone: true}" />
+
+
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <h2 align="center"joyrideStep="asi3" title="Bienvenido" text="En este paso 4 selecciona las tareas a realizar ">Tipo de Cuidado</h2>
+                  <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+                    <div class="input-group row m-0 justify-content-center align-items-center vh-100 ">
+                      <ul class="icheck-list" class="list">
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-1"
+                            [(ngModel)]="usuarioModelo.compania" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-1">Compañia</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-2"
+                              [(ngModel)]="usuarioModelo.alimentacion" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-2">Alimentación especial</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-3"
+                             [(ngModel)]="usuarioModelo.actividades" [ngModelOptions]="{standalone: true}" >
+                          <label for="minimal-checkbox-3">Actividades</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-4"
+                          [(ngModel)]="usuarioModelo.paseo" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-4">Paseo</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-5"
+                          [(ngModel)]="usuarioModelo.tareas" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-5">Tareas menores de aseo y orden</label>
+                        </li>
+
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--FIN CUIDADO ADULTO MAYOR-->
+              <!--CATEGORIA SERVICIO DOMESTICO-->
+              <div  *ngIf="mostrar3">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <div>
+
+                    <div class="row m-0 justify-content-center align-items-center vh-100 ">
+                      <label  >¿Cuanta experiencia tienes?</label>
+                      <div class="form-group col-6">
+
+                        <div class="input-group">
+                                <input  type="text" class="form-control " placeholder="Años de experiencia"
+                             [(ngModel)]="usuarioModelo.experiencia" [ngModelOptions]="{standalone: true}" />
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+
+                </div>
+              </div>
+
+              <!--FIN SERVICIO DOMESTICO-->
+              <!--CATEGORIA CUIDADO DE MASCOTAS-->
+              <div  *ngIf="mostrar4">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <div>
+                     <div class="row m-0 justify-content-center align-items-center vh-100 ">
+                      <label  >¿Cuanta experiencia tienes?</label>
+                      <div class="form-group col-6">
+                       <div class="input-group">
+                         <input  type="text" class="form-control " placeholder="Años de experiencia"
+                             [(ngModel)]="usuarioModelo.experiencia" [ngModelOptions]="{standalone: true}" />
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                </div>
+
+                <div >
+                  <h2 align="center">Debe ser capaz de cuidar</h2>
+                  <div class="form-group row m-0 justify-content-center align-items-center vh-100 ">
+
+
+
+                      <div class="input-group ">
+                        <ul class="icheck-list" class="list">
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-1"
+                            [(ngModel)]="usuarioModelo.perros" [ngModelOptions]="{standalone: true}">
+                            <label for="minimal-checkbox-1">Perros</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-2"
+                            [(ngModel)]="usuarioModelo.gatos" [ngModelOptions]="{standalone: true}">
+                            <label for="minimal-checkbox-2">Gatos</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-3"
+                            [(ngModel)]="usuarioModelo.otros" [ngModelOptions]="{standalone: true}" >
+                            <label for="minimal-checkbox-3">Otros</label>
+                          </li>
+
+
+                        </ul>
+
+                      </div>
+
+                  </div>
+
+                </div>
+             </div>
+
+              <!--FIN CATEGORIA CUIDADO DE MASCOTAS-->
+              <!--CATEGORIA CUIDADO DE CAPACIDADES ESPECIALES-->
+              <div  *ngIf="mostrar5">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <div>
+                     <div class="row m-0 justify-content-center align-items-center vh-100 ">
+                      <label  >¿Cuanta experiencia tienes?</label>
+                      <div class="form-group col-6">
+                       <div class="input-group">
+                         <input  type="text" class="form-control " placeholder="Años de experiencia"
+                             [(ngModel)]="usuarioModelo.experiencia" [ngModelOptions]="{standalone: true}" />
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                </div>
+
+
+                <div >
+                  <h2 align="center" >Persona que necesita atención</h2>
+                  <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+                    <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+                      <div class="input-group ">
+                        <ul class="icheck-list" class="list">
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-1"
+                            [(ngModel)]="usuarioModelo.bebe" [ngModelOptions]="{standalone: true}"  >
+                            <label for="minimal-checkbox-1">Bebe</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-2"
+                            [(ngModel)]="usuarioModelo.infante" [ngModelOptions]="{standalone: true}" >
+                            <label for="minimal-checkbox-2">Infante</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-3"
+                              [(ngModel)]="usuarioModelo.adolescente" [ngModelOptions]="{standalone: true}" >
+                            <label for="minimal-checkbox-3">Adolescente</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-4"
+                             [(ngModel)]="usuarioModelo.adultocheck" [ngModelOptions]="{standalone: true}" >
+                            <label for="minimal-checkbox-4">Adulto</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-5"
+                               [(ngModel)]="usuarioModelo.adultoMayor" [ngModelOptions]="{standalone: true}" >
+                            <label for="minimal-checkbox-5">Adulto Mayor</label>
+                          </li>
+
+
+
+                        </ul>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div>
+                  <h2 >Descripción breve de cuál es el tipo de capacidad </h2>
+                  <div class="form-group">
+                    <textarea align="center" class="form-control"  [(ngModel)]="usuarioModelo.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
+
+                  </div>
+
+                </div>
+              </div>
+
+              <!--FIN CATEGORIA CUIDADO DE CAPACIDADES ESPECIALES-->
+              <!--CATEGORIA TUTORIAS ESCOLARES-->
+              <div *ngIf="mostrar6">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+                 <div>
+
+                  <div class="form-group">
+                    <div>
+                      <div class="row m-0 justify-content-center align-items-center vh-100">
+
+                        <div *ngFor="let item of usuarioModelo.ninos">
+
+
+                          <div>
+                            <label >Edad</label>
+                            <input type="number"  class="form-control"  [(ngModel)]="item.edad" [ngModelOptions]="{standalone: true}" />
+                            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                          </div>
+                          &nbsp;&nbsp;
+
+
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-5"[(ngModel)]="item.masculino" [ngModelOptions]="{standalone: true}"
+                         >
+                          <label for="minimal-checkbox-5"  >M</label>
+                          &nbsp;&nbsp;
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-6"[(ngModel)]="item.femenino" [ngModelOptions]="{standalone: true}"
+                           >
+                          <label for="minimal-checkbox-6" >F</label>
+
+
+                        </div>
+
+                      </div>
+                     </div>
+
+                     <div  class="row m-0 justify-content-center align-items-center vh-100">
+                    <div class="form-group ">
+                      <label  >¿Cuanta experiencia tienes?</label><br>
+
+                        <input type="text" class="form-control col-6" placeholder="Tiempo de experiencia requerida" [(ngModel)]="usuarioModelo.experiencia"[ngModelOptions]="{standalone: true}" />
+                    </div>
+                  </div>
+                  </div>
+
+                </div>
+
+                <div >
+                  <div class="form-group">
+                    <h2 align="center"  >Nivel que está cursando</h2>
+                    <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+                      <div class="input-group row m-0 justify-content-center align-items-center vh-100">
+                        <ul class="icheck-list" class="list">
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-1"
+                            [(ngModel)]="usuarioModelo.prekinder"[ngModelOptions]="{standalone: true}" >
+                            <label for="minimal-checkbox-1">Pre - Kínder</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-2"
+                            [(ngModel)]="usuarioModelo.kinder"[ngModelOptions]="{standalone: true}" >
+                            <label for="minimal-checkbox-2">Kínder</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-3"
+                            [(ngModel)]="usuarioModelo.escuela"[ngModelOptions]="{standalone: true}" >
+                            <label for="minimal-checkbox-3">Escuela</label>
+                          </li>
+                          <li>
+                            <input type="checkbox" class="check form-control" id="minimal-checkbox-4"
+                            [(ngModel)]="usuarioModelo.colegio"[ngModelOptions]="{standalone: true}" >
+                            <label for="minimal-checkbox-4">Colegio</label>
+                          </li>
+
+                        </ul>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!--FIN CATEGORIA NIÑERAS-->
+              <!--CATEGORIA NIÑERAS-->
+              <div *ngIf="mostrar7">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <div>
+                     <div class="row m-0 justify-content-center align-items-center vh-100 ">
+                      <label  >¿Cuanta experiencia tienes?</label>
+                      <div class="form-group col-6">
+                       <div class="input-group">
+                         <input  type="text" class="form-control " placeholder="Años de experiencia"
+                             [(ngModel)]="usuarioModelo.experiencia" [ngModelOptions]="{standalone: true}" />
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                  <h2 align="center">Trabajos del hogar</h2>
+                  <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+                    <div class="input-group row m-0 justify-content-center align-items-center vh-100 ">
+                      <ul class="icheck-list" class="list">
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-1"
+                          [(ngModel)]="usuarioModelo.albanil" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-1">Albañil</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-2"
+                             [(ngModel)]="usuarioModelo.electricista" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-2">Electricista</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-3"
+                          [(ngModel)]="usuarioModelo.plomero" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-3">Plomero</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-4"
+                           [(ngModel)]="usuarioModelo.carpintero" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-4">Carpintero</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-5"
+                             [(ngModel)]="usuarioModelo.cerrajero" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-5">Cerrajero</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-6"
+                            [(ngModel)]="usuarioModelo.jardinero" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-6">Jardinero</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-7"
+                            [(ngModel)]="usuarioModelo.servicioTecnico" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-7">Servicio Tecnico</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-8"
+                          [(ngModel)]="usuarioModelo.otros" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-8">Otros</label>
+                        </li>
+
+
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--FIN CATEGORIA NIÑERAS-->
+              <!--CATEGORIA NIÑERAS-->
+              <div *ngIf="mostrar8">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <div>
+                     <div class="row m-0 justify-content-center align-items-center vh-100 ">
+                      <label  >¿Cuanta experiencia tienes?</label>
+                      <div class="form-group col-6">
+                       <div class="input-group">
+                         <input  type="text" class="form-control " placeholder="Años de experiencia"
+                             [(ngModel)]="usuarioModelo.experiencia" [ngModelOptions]="{standalone: true}" />
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <h2 align="center" >Asistencia Automotriz</h2>
+                  <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+                    <div class="input-group row m-0 justify-content-center align-items-center vh-100 ">
+                      <ul class="icheck-list" class="list">
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-1"
+                          [(ngModel)]="usuarioModelo.grua" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-1">Grúa</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-2"
+                            [(ngModel)]="usuarioModelo.mecanico" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-2">Mecánico</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-3"
+                           [(ngModel)]="usuarioModelo.electrico" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-3">Eléctrico</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-4"
+                             [(ngModel)]="usuarioModelo.lavadoAuto" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-4">Lavado</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-5"
+                          [(ngModel)]="usuarioModelo.chofer" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-5">Chofer</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-6"
+                            [(ngModel)]="usuarioModelo.cerrajeroAutomotriz" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-6">Cerrajero</label>
+                        </li>
+
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-7"
+                          [(ngModel)]="usuarioModelo.otros" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-7">Otros</label>
+                        </li>
+
+
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--FIN CATEGORIA NIÑERAS-->
+              <!--CATEGORIA MENSAJERIA-->
+              <div *ngIf="mostrar9">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <h2 align="center"  >Mensajería</h2>
+                  <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+                    <div class="input-group row m-0 justify-content-center align-items-center vh-100 ">
+                      <ul class="icheck-list" class="list">
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-1"
+                             [(ngModel)]="usuarioModelo.paqueteria" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-1">Paquetería</label>
+                        </li>
+
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-2"
+                           [(ngModel)]="usuarioModelo.tramites" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-2">Tramites</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-3"
+                            [(ngModel)]="usuarioModelo.movilizacion" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-3">Movilización</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-4"
+                          [(ngModel)]="usuarioModelo.otros" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-4">Otros</label>
+                        </li>
+
+
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <h2 align="center" >¿En donde lo necesitas?</h2>
+                  <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+                    <div class="input-group row m-0 justify-content-center align-items-center vh-100 ">
+                      <ul class="icheck-list" class="list">
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-5"
+                           [(ngModel)]="usuarioModelo.dentroCiudad" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-5">Dentro de la Ciudad</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-6"
+                           [(ngModel)]="usuarioModelo.otrasCiudades" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-6">Otras Ciudades</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-7"
+                            [(ngModel)]="usuarioModelo.fueraPais" [ngModelOptions]="{standalone: true}">
+                          <label for="minimal-checkbox-7">Fuera del País</label>
+                        </li>
+
+
+
+
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--FIN CATEGORIA NIÑERAS-->
+              <!--CATEGORIA SPA-->
+              <div *ngIf="mostrar10">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <div>
+                     <div class="row m-0 justify-content-center align-items-center vh-100 ">
+                      <label  >¿Cuanta experiencia tienes?</label>
+                      <div class="form-group col-6">
+                       <div class="input-group">
+                         <input  type="text" class="form-control " placeholder="Años de experiencia"
+                             [(ngModel)]="usuarioModelo.experiencia" [ngModelOptions]="{standalone: true}" />
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <h2 align="center" >Spa</h2>
+                  <div class="form-group row m-0 justify-content-center align-items-center vh-100">
+
+                    <div class="input-group row m-0 justify-content-center align-items-center vh-100 ">
+                      <ul class="icheck-list" class="list">
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-1"
+                          [(ngModel)]="usuarioModelo.peluqueria" [ngModelOptions]="{standalone: true}" >
+                          <label for="minimal-checkbox-1">Peluquería</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-2"
+                          [(ngModel)]="usuarioModelo.masajes" [ngModelOptions]="{standalone: true}" >
+                          <label for="minimal-checkbox-2">Masajes</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-3"
+                            [(ngModel)]="usuarioModelo.manicure" [ngModelOptions]="{standalone: true}" >
+                          <label for="minimal-checkbox-3">Manicure</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-4"
+                             [(ngModel)]="usuarioModelo.pedicura" [ngModelOptions]="{standalone: true}" >
+                          <label for="minimal-checkbox-4">Pedicura</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-5"
+                            [(ngModel)]="usuarioModelo.maquillaje" [ngModelOptions]="{standalone: true}" >
+                          <label for="minimal-checkbox-5">Maquillaje</label>
+                        </li>
+                        <li>
+                          <input type="checkbox" class="check form-control" id="minimal-checkbox-6"
+                          [(ngModel)]="usuarioModelo.otros" [ngModelOptions]="{standalone: true}" >
+                          <label for="minimal-checkbox-6">Otros</label>
+                        </li>
+
+
+
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--FIN CATEGORIA SPA-->
+              <!--CATEGORIA NIÑERAS-->
+              <div *ngIf="mostrar11">
+                <div  class="col-md-12">
+                  <div class="form-group">
+                    <h2 align="center">Cuando lo Necesitas</h2>
+                    <div class="form-group">
+                      <label class="control-label">FECHA </label>
+                      <input type="date" class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="usuarioModelo.fecha" [ngModelOptions]="{standalone: true}">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!--FIN CATEGORIA NIÑERAS-->
+              <!--CATEGORIA NIÑERAS-->
+              <div *ngIf="mostrar12">
+
+              </div>
+
+              <!--FIN CATEGORIA NIÑERAS-->
+
+            </div>
+
+
+
+          </div>
+          <br>
+          <br>
+          <div class="form-actions">
+            <button class="btn btn-primary" (click)="update()"> <i class="fa fa-check"></i>Actualizar datos</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Row -->

@@ -1,0 +1,15 @@
+
+
+tab.tab-responsive {
+    margin: auto;
+    display: block
+  }
+
+  .tabla{
+    width: 900px;
+    margin: 0 auto;
+}
+
+.x {
+    text-align: center;
+  }

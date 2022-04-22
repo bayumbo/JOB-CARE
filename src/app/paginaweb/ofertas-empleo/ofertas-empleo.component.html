@@ -1,0 +1,205 @@
+<app-header-pagina></app-header-pagina>
+
+<div id="main-wrapper">
+
+  <div >
+
+    <div class="container-fluid">
+      <div class="row animated ">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+
+              <div class="row animated  m-0 justify-content-center align-items-center vh-100 ">
+
+                <div class="col-4">
+
+                  <div class="card">
+
+                    <div class="card-body">
+
+                      <div>
+
+                        <!--    <select class="form-control text-uppercase has-dropdown" name="tipo" #input (change)="buscarOferta( input.value )">
+                    <option value="">TODAS LAS CATEGORIAS</option>
+                    <option value="NIÑERAS">NIÑERAS</option>
+                    <option value="CUIDADO ADULTO MAYOR">CUIDADO ADULTO MAYOR</option>
+                    <option value="SERVICIO DOMESTICO">SERVICIO DOMESTICO</option>
+                    <option value="CUIDADO DE MASCOTAS">CUIDADO DE MASCOTAS</option>
+                    <option value="CUIDADOS CAPACIDADES ESPECIALES">CUIDADOS CAPACIDADES ESPECIALES</option>
+                    <option value="TUTORIAS ESCOLARES">TUTORIAS ESCOLARES</option>
+                    <option value="TRABAJOS DEL HOGAR">TRABAJOS DEL HOGAR</option>
+                    <option value="ASISTENCIA AUTOMOTRIZ">ASISTENCIA AUTOMOTRIZ</option>
+                    <option value="MENSAJERIA">MENSAJERIA</option>
+                    <option value="SPA">SPA</option>
+                    <option value="OTROS">OTROS</option>
+                    <option value="PROFESIONALES TITULADOS">PROFESIONALES TITULADOS</option>
+                  </select> -->
+                        <ng-select class="form-control text-uppercase has-dropdown" (change)="changeFn(val)"
+                          [(ngModel)]="val" [ngModelOptions]="{standalone: true}" bindLabel="playerName" placeholder=""
+                          appendTo="body">
+                          <!--     <ng-option *ngFor="let usuario of usuarios" [value]="usuario.uid">{{usuario.nombre}}</ng-option> -->
+                          <ng-option value="">TODAS LAS CATEGORIAS</ng-option>
+                          <ng-option value="NIÑERAS">NIÑERAS</ng-option>
+                          <ng-option value="CUIDADO ADULTO MAYOR">CUIDADO ADULTO MAYOR</ng-option>
+                          <ng-option value="SERVICIO DOMESTICO">SERVICIO DOMESTICO</ng-option>
+                          <ng-option value="CUIDADO DE MASCOTAS">CUIDADO DE MASCOTAS</ng-option>
+                          <ng-option value="CUIDADOS CAPACIDADES ESPECIALES">CUIDADOS CAPACIDADES ESPECIALES</ng-option>
+                          <ng-option value="TUTORIAS ESCOLARES">TUTORIAS ESCOLARES</ng-option>
+                          <ng-option value="TRABAJOS DEL HOGAR">TRABAJOS DEL HOGAR</ng-option>
+                          <ng-option value="ASISTENCIA AUTOMOTRIZ">ASISTENCIA AUTOMOTRIZ</ng-option>
+                          <ng-option value="MENSAJERIA">MENSAJERIA</ng-option>
+                          <ng-option value="SPA">SPA</ng-option>
+                          <ng-option value="OTROS">OTROS</ng-option>
+                          <ng-option value="PROFESIONALES TITULADOS">PROFESIONALES TITULADOS</ng-option>
+                        </ng-select>
+                      </div>
+                      <!--    <input #input (keyup)="buscarOferta( input.value )" type="text" class="form-control"
+                                    placeholder="Buscar ofertas según tu categoria..."> -->
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+
+
+
+              <div class="row animated fadeIn" *ngIf="cargando">
+
+                <div class="col-sm-12">
+
+                  <div class="alert alert-warning text-center">
+                    <strong>Cargando</strong>
+                    <br>
+                    <i class="fa fa-refresh fa-spin fa-2x"></i>
+                    <br>
+                    <span>Espere por favor</span>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class=" container p-3 " class="col-sm">
+                <h3 align="center" id="color">OFERTAS LABORALES</h3>
+              </div>
+
+
+              <div class="container">
+                <div class="row" *ngIf="!cargando">
+                  <div class="col-12">
+                    <table class="table table-hover table-responsive tabla" id="tableColor">
+                      <thead>
+                        <tr>
+                          <th scope="col" COLSPAN=1 style="background: azure">Nº</th>
+                          <th scope="col" COLSPAN=1 style="background: azure">TÍTULO EMPLEO</th>
+                          <th scope="col" COLSPAN=1 style="background: azure">VALOR</th>
+
+                          <th scope="col" COLSPAN=1 style="background: azure">HORARIO</th>
+                          <th scope="col" COLSPAN=1 style="background: azure">CIUDAD</th>
+                          <th scope="col" COLSPAN=1 style="background: azure">REMUNERACIÓN</th>
+                          <th scope="col" COLSPAN=1 style="background: azure">FECHA PUBLICACIÓN</th>
+                          <th scope="col" COLSPAN=1 style="background: azure" joyrideStep="perfil" title="Bienvenido"
+                            text="Presiona el boton en la sección de categoria para que te redirija a la parte de registro y puedas ver estas ofertas en nuestra plataforma ">
+                            CATEGORIA</th>
+
+
+                          <th scope="col" COLSPAN=1 style="background: azure">ACCIÓN</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="let form of  formularios| paginate: { itemsPerPage: 10, currentPage: totalRegistros }; let i = index">
+                          <td>{{i+1}}</td>
+                          <td>{{form.tituloEmpleo}}</td>
+                          <td>${{form.valor}}</td>
+                          <td>{{form.horario}}</td>
+                          <td>{{form.ciudad}}</td>
+                          <td>{{form.remuneracion}}</td>
+                          <td>
+                            {{form.fechaReporte | date:'dd-MM-yyyy'}}
+                          </td>
+                          <td>
+                            <span *ngIf="(form.categorias ==='NIÑERAS')" #ruta>
+                              <a type="button" class="btn btn-outline-primary" href="#/ninera">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='CUIDADO ADULTO MAYOR')">
+                              <a type="button" class="btn btn-outline-primary" href="#/cuidadoAdulto">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='SERVICIO DOMESTICO')">
+                              <a type="button" class="btn btn-outline-primary" href="#/domestico">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='CUIDADO DE MASCOTAS')">
+                              <a type="button" class="btn btn-outline-primary" href="#/mascota">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='CUIDADOS CAPACIDADES ESPECIALES')">
+                              <a type="button" class="btn btn-outline-primary" href="#/capacidades">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='TUTORIAS ESCOLARES')">
+                              <a type="button" class="btn btn-outline-primary" href="#/tutorias">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='TRABAJOS DEL HOGAR')">
+                              <a type="button" class="btn btn-outline-primary" href="#/trabajos">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='ASISTENCIA AUTOMOTRIZ')">
+                              <a type="button" class="btn btn-outline-primary" href="#/asistencia">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='MENSAJERIA')">
+                              <a type="button" class="btn btn-outline-primary" href="#/mensajeria">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='SPA')">
+                              <a type="button" class="btn btn-outline-primary" href="#/spa">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='PROFESIONALES TITULADOS')">
+                              <a type="button" class="btn btn-outline-primary" href="#/profesional">
+                                {{form.categorias}}</a>
+                            </span>
+                            <span *ngIf="(form.categorias ==='OTROS')">
+                              <a type="button" class="btn btn-outline-primary">
+                                {{form.categorias}}</a>
+                            </span>
+
+
+                          </td>
+
+
+
+                          <td>
+
+
+                            <button type="button" class="btn btn-success" (click)="asistencia()"
+                              style="width: 85px;height: 75;font-size: 50%;"><i><img
+                                  src="../../../../assets/images/patch-question.svg" alt=""></i></button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

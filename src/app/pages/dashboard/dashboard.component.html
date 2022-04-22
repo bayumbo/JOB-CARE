@@ -1,0 +1,10 @@
+<app-perfil></app-perfil>
+<div *ngIf="(usuario.role ==='EMPLEADO_ROLE')" >
+
+    <app-ofertas-premium ></app-ofertas-premium>
+</div>
+
+<div  *ngIf="(usuario.role ==='EMPLEADOR_ROLE')">
+
+    <app-perfiles-premium></app-perfiles-premium>
+</div>

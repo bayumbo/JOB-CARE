@@ -1,0 +1,68 @@
+p {
+  font-family: Lato;
+}
+
+.center {
+  text-align: center;
+
+}
+
+.marca-de-agua {
+  background: rgba(247, 243, 243, 0.034) url(../../../assets/images/jobcare.png);
+  width: 500px;
+  height: 341px;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+}
+
+.marca-de-agua img{
+  padding:0;
+  width:100%;
+  height:100%;
+  margin:0;
+  filter:alpha(opacity=90);
+  opacity:.90;
+}
+
+agm-map {
+height: 300px;
+}
+
+
+.bgm{
+
+font-size: 100%;
+
+text-align:center;
+
+}
+
+.boton_personalizado{
+text-decoration: none;
+padding: 10px;
+font-weight: 300;
+font-size: 20px;
+color: #fafafa;
+background-color: #c4c3c3;
+border-radius: 10px;
+border: 2px solid#56c2c6;
+width:180px;
+height:60px;
+}
+
+
+.block{
+text-align:center;
+background-color:lightgray;
+}
+
+.list{
+text-align: left;
+display:inline-block;
+}
+
+img.img-responsive {
+  margin: auto;
+  display: block
+}

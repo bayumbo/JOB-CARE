@@ -1,0 +1,99 @@
+<div class="row animated fadeIn m-0 justify-content-center align-items-center vh-100 ">
+    <div class="col-10">
+        <div class="card">
+            <div class="card-body">
+
+                <div>
+
+                    <select class="form-control text-uppercase has-dropdown" name="tipo" #input
+                        (change)="buscarOferta( input.value )">
+                        <option value="">TODAS LAS CATEGORIAS</option>
+                        <option value="NIÑERAS">NIÑERAS</option>
+                        <option value="CUIDADO ADULTO MAYOR">CUIDADO ADULTO MAYOR</option>
+                        <option value="SERVICIO DOMESTICO">SERVICIO DOMESTICO</option>
+                        <option value="CUIDADO DE MASCOTAS">CUIDADO DE MASCOTAS</option>
+                        <option value="CUIDADOS CAPACIDADES ESPECIALES">CUIDADOS CAPACIDADES ESPECIALES</option>
+                        <option value="TUTORIAS ESCOLARES">TUTORIAS ESCOLARES</option>
+                        <option value="TRABAJOS DEL HOGAR">TRABAJOS DEL HOGAR</option>
+                        <option value="ASISTENCIA AUTOMOTRIZ">ASISTENCIA AUTOMOTRIZ</option>
+                        <option value="MENSAJERIA">MENSAJERIA</option>
+                        <option value="SPA">SPA</option>
+                        <option value="OTROS">OTROS</option>
+                        <option value="PROFESIONALES TITULADOS">PROFESIONALES TITULADOS</option>
+                    </select>
+
+                </div>
+                <!--                 <input #input (keyup)="buscarOferta( input.value )" type="text" class="form-control" placeholder="Buscar ofertas según tu categoria..."> -->
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=" container p-3 " class="col-sm">
+    <h3 align="center" id="color">OFERTAS PREMIUM PUBLICADAS</h3>
+</div>
+
+<br>
+
+<div class="container">
+    <div class="row justify-content-between">
+        <!--Accordion wrapper-->
+        <div style="width:100%" class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+            <!-- Accordion card -->
+            <div class="card caja0" *ngFor="let form of  formularios| paginate: { itemsPerPage: 5, currentPage: totalRegistros }; let i = index">
+        
+            <!-- Card header -->
+            <div class="card-header" role="tab" id="heading{{i}}">
+                <a data-toggle="collapse" data-parent="#accordionEx" href="#collapse{{i}}" aria-expanded="false"
+                aria-controls="collapse{{i}}">
+                    <div class="row">
+                        <div class="col-10">
+                            <h5 class="mb-0">
+                                {{form.tituloEmpleo}} 
+                            </h5>
+                        </div>
+                        <div class="col-2">
+                            <i class="fas fa-arrow-alt-circle-down fa-1x" style="text-align:right;float:right"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <!-- Card body -->
+            <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading{{i}}"
+                data-parent="#accordionEx">
+                <div class="card-body">
+                    <div class="card caja0" style="padding:2%">
+                        <h5 class= "card-header" style="background: azure">TÍTULO EMPLEO</h5>
+                        <p class="card-text">{{form.tituloEmpleo}}</p>
+                        <h5 class= "card-header" style="background: azure" >VALOR</h5>
+                        <p class="card-text">${{form.valor}}</p>
+                        <h5 class= "card-header" style="background: azure"  >CATEGORIA</h5>
+                        <p class="card-text">{{form.categorias}}</p>
+                        <h5 class= "card-header" style="background: azure">CIUDAD</h5>
+                        <p class="card-text">{{form.ciudad}}</p>
+                        <h5 class= "card-header" style="background: azure">FECHA PUBLICACIÓN</h5>
+                        <p class="card-text">{{form.fechaReporte | date:'dd-MM-yyyy'}}</p>
+                        <div class="row">
+                            <div style="padding-left: 4%;padding-bottom: 2%;" class="col-6">
+                                <button type="button" class="btn btn-outline-primary" style="width: 100%;height: auto;font-size: 100%;" [routerLink]="['/dashboard/ofertaCompleta/',form._id]"><b>Ver oferta</b></button>
+                            </div>
+                            <div style="padding-right: 4%;padding-bottom: 2%;" class="col-6">
+                                <button type="button" class="btn btn-outline-primary" style="width: 100%;height: auto;font-size: 100%;" (click)="calificando(form._id,form.usuario, form.emailEmpleador)"><b>Postular</b></button>        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            </div>
+            <!-- Accordion card -->
+        </div>
+        <!-- Accordion wrapper -->
+    </div>
+    <br>
+    <br>
+    <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+</div>

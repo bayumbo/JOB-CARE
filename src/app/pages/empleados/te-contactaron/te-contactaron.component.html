@@ -1,0 +1,24 @@
+<div class=" container p-3 " class="col-sm">
+    <h3 align="center" id="color">EMPLEADOR QUE QUIERE CONTACTO</h3>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="card caja0">
+            <tr *ngFor="let post of  notifications| paginate: { itemsPerPage: 3, currentPage: totalRegistros }; let i = index" style="padding:2%">
+                <!--<h5 class= "card-header" style="background: azure">Nº</h5>
+                <p class="card-text">{{i+1}}</p>-->
+                <h5 class= "card-header" style="background: azure">CORREO</h5>
+                <p class="card-text">{{post.trasmitter.email }}</p>
+                <h5 class= "card-header" style="background: azure" >TELÉFONO</h5>
+                <p class="card-text">{{post.trasmitter.telefono }}</p>
+                <h5 class= "card-header" style="background: azure"  >CATEGORIA</h5>
+                <p class="card-text">{{post.trasmitter.categorias }}</p>
+            </tr>
+        </div>
+        <br>
+        <br>
+        <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+    </div>
+</div>

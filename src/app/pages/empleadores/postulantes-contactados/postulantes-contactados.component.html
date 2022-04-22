@@ -1,0 +1,72 @@
+<h3 align="center" id="color">PERFILES CONTACTADOS</h3>
+<br>
+<div class="row animated fadeIn">
+    <div class="container">
+        <div class="row justify-content-between" style="margin-left: 15px;margin-right: 15px;">
+            <!--Accordion wrapper-->
+            <div style="width:100%" class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+        
+                <!-- Accordion card -->
+                <div class="card caja0" *ngFor="let form of  notifications | paginate: { itemsPerPage: 5, currentPage: totalRegistros }; let i = index">
+            
+                <!-- Card header -->
+                <div class="card-header" role="tab" id="heading{{i}}">
+                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapse{{i}}" aria-expanded="false"
+                    aria-controls="collapse{{i}}">
+                        <div class="row">
+                            <div class="col-10">
+                                <h5 class="mb-0">
+                                    {{form.receiverHoja.nombre}} {{form.receiverHoja.apellido}} 
+                                </h5>
+                            </div>
+                            <div class="col-2">
+                                <i class="fas fa-arrow-alt-circle-down fa-1x" style="text-align:right;float:right"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            
+                <!-- Card body -->
+                <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading{{i}}"
+                    data-parent="#accordionEx">
+                    <div class="card-body">
+                        <div class="card caja0" style="padding: 2%;">      
+                            <!--<h5 class= "card-header" style="background: azure">Nº</h5>
+                            <p class="card-text">{{i+1}}</p>--> 
+                            <h5 class= "card-header" style="background: azure">NOMBRE</h5>
+                            <p class="card-text">{{form.receiverHoja.nombre}} {{form.receiverHoja.apellido}}</p>
+                            <h5 class= "card-header" style="background: azure"  >CATEGORIA</h5>
+                            <p class="card-text">{{form.receiverHoja.categorias}}</p>
+                            <h5 class= "card-header" style="background: azure">CÉDULA</h5>
+                            <p class="card-text">{{form.receiverHoja.cedula}}</p>
+                            <h5 class= "card-header" style="background: azure">CIUDAD</h5>
+                            <p class="card-text">{{form.receiverHoja.ciudad}}</p>
+                            <h5 class= "card-header" style="background: azure">DIRECCIÓN</h5>
+                            <p class="card-text">{{form.receiverHoja.direccion}}</p>
+                            <h5 class= "card-header" style="background: azure">TELÉFONO</h5>
+                            <p class="card-text">{{form.receiverHoja.telefonohoja}}</p>
+                            <div class="row">
+                                <div style="padding-left: 4%;padding-bottom: 2%;" class="col-6">
+                                    <a type="button" class="btn btn-outline-primary" *ngIf="form.receiverHoja.urlPdf != null" href="{{form.receiverHoja.urlPdf}}" style="width: 100%;height: auto;font-size: 100%;" target="_blank"><b>VER HOJA DE VIDA</b></a>
+                                    <span *ngIf="form.receiverHoja.urlPdf == null">NO HAY HOJA DE VIDA</span>
+                                </div>
+                                <div style="padding-right: 4%;padding-bottom: 2%;" class="col-6">
+                                    <button (click)=" eliminar(form)" class="btn btn-danger">
+                                        <i class="fa fa-trash-o"></i> ELIMINAR
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                </div>
+                <!-- Accordion card -->
+            </div>
+            <!-- Accordion wrapper -->
+          </div>
+        <br>
+        <br>
+        <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+    </div>
+</div>

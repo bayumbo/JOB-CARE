@@ -1,0 +1,69 @@
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="user-profile">
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void()" aria-expanded="false"> <img
+                            [src]="usuario.img | imagen" alt="user" />
+                        <span class="hide-menu">{{ usuario.usuario }}</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="javascript:void()" [routerLink]="['/dashboard/perfil']"
+                                routerLinkActive="router-link-active">Mi Perfil </a></li>
+
+                        <!--    <li><a href="javascript:void()" [routerLink]="['/dashboard/account-settings']"
+                                routerLinkActive="router-link-active">Temas</a></li>  -->
+                        <li><a href="javascript:void()" (click)="cerrarSesion()"> Cerrar Sesión</a></li>
+                    </ul>
+                </li>
+                <li class="nav-devider"></li>
+
+                <li *ngFor="let menu of _sidebar.menu">
+
+                   <a class="has-arrow waves-effect waves-dark" href="javascript:void()" aria-expanded="false">
+                        <i [class]="menu.icono"> </i>
+                        <span class="hide-menu" joyrideStep="prota1" title="Bienvenido"
+                            text="Hola presionando en principal se despliega nuestro menu si eres empleador o empleado ">
+                            {{ menu.titulo }}
+                            <span class="label label-rouded label-themecolor pull-right"> {{ menu.submenu.length
+                                }}</span>
+                        </span>
+                    </a>
+
+
+                    <ul style="list-style-type:circle" aria-expanded="true" class="collapse in">
+                        <li><a href="#/dashboard">Inicio</a></li>
+                        <li *ngFor="let submenu of menu.submenu">
+                            <a routerLinkActive="active" [routerLink]="[ submenu.url ]"> {{ submenu.titulo }} </a>
+                        </li>
+
+
+
+                        <!-- <li><a href="index2.html">Analytical</a></li>
+                         <li><a href="index3.html">Demographical</a></li>
+                         <li><a href="index4.html">Modern</a></li> -->
+                    </ul>
+                </li>
+
+                <li class="nav-devider"></li>
+                <ul>
+
+
+
+                    <li  *ngIf="(usuario.role ==='EMPLEADO_ROLE'||usuario.role ==='EMPLEADOR_ROLE' )"><a href="javascript:void()" (click)="asistencia()">&nbsp;<i><img
+                                    src="../../../../assets/images/patch-question.svg" alt=""></i>&nbsp; Guia</a></li>
+                </ul>
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<p joyrideStep="prota2" title="Para publicar"
+    text="Si eres empleador o empleado despues del literal inicio esta la petaña de publicar y recuerda que es necesario seleccionar uno de nuestros planes para que tu publicación sea visible ">
+</p>

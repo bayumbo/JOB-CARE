@@ -1,0 +1,31 @@
+.tabla{
+    width: 900px;
+}
+
+.x {
+    text-align: center;
+  }
+
+  .caja0{
+    background-color: #f7f7f7;
+    border: 2px solid #56c2c6;
+    border-radius: 20px 20px;
+    width:100%;
+    height: auto;
+  }
+  p{
+    padding-left: 2%;
+    padding-top: 1%; 
+  }
+  p.card-text{
+    text-align: justify;
+  }
+  h5{
+    text-align: justify;
+    line-height: 10px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .card-header { 
+    border-radius: 20px;
+  }

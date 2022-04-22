@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-lg-7">
+      <div class="card">
+          <div class="card-body">
+              <h4 class="card-title">Perfil del Usuario</h4>
+          <form ngNativeValidate class="form p-t-20" >
+
+
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Correo de usuario</label>
+                      <div class="input-group">
+                          <div class="input-group-addon"><i class="ti-email"></i></div>
+                          <input  type="email" name="email" class="form-control"  placeholder="Correo de usuario"required [(ngModel)]="usuario.email" disabled>
+                      </div>
+                  </div>
+
+
+                  <button type="submit" class="btn btn-primary waves-effect waves-light m-r-10" hidden>
+                      <i class="fa fa-save"></i> Guardar</button>
+                      <button *ngIf="(usuario.role ==='EMPLEADOR_ROLE')" type="button" class="btn btn-primary waves-effect waves-light m-r-10"[routerLink]="['/dashboard/registroCompleto/',usuario._id]" routerLinkActive="router-link-active" >
+                        <i class="fa fa-user-o"></i>&nbsp;PERFIL COMPLETO</button>
+              </form>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-5">
+          <div class="card">
+              <div class="card-body">
+                  <h4 class="card-title">Fotografía del usuario</h4>
+
+                  <img  *ngIf="!imagenTemporal" [src]="usuario.img |imagen" class="w150">
+                  <img  *ngIf="imagenTemporal" [src]="imagenTemporal" class="w150">
+                  <input (change)="seleccionaImagen($event.target.files[0])" type="file">
+                  <br>
+                  <br>
+                  <button (click)="cambiarImagen()" type="button" class="btn btn-primary waves-effect waves-light m-r-10">
+                          <i class="fa fa-save"></i> Actualizar Foto</button>
+              </div>
+          </div>
+  </div>
+
+
+</div>
+

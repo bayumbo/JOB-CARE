@@ -1,0 +1,116 @@
+
+<app-login-header></app-login-header>
+
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+
+
+
+<section>
+<div class="wrapper fadeInDown  row m-0 justify-content-center align-items-center vh-100" >
+        <div id="formContent">
+          <!-- Tabs Titles -->
+
+
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <img src="../../../assets/images/jobcare.png" id="icon" alt="User Icon" />
+          </div>
+
+          <!-- Login Form -->
+            <form ngNativeValidate #f="ngForm" class="form-horizontal form-material">
+                          <a href="javascript:void(0)" class="text-center db"></a>
+                          <div class="form-group m-t-40">
+                            <div class="col-xs-12">
+                                <input [ngModel]="email" name="email" class="form-control" type="email" required placeholder="Correo del usuario">
+                            </div>
+                        </div>
+                          <div class="form-group">
+                              <div class="col-xs-12">
+                                  <input ngModel name="password" class="form-control" type="password" required placeholder="Contraseña">
+                              </div>
+                          </div>
+                          <div class="form-group ">
+                              <div class="col-md-12">
+                                  <div class="checkbox checkbox-primary  p-t-1">
+                                      <input [(ngModel)]="recuerdame" name="recuerdame" id="checkbox-signup" type="checkbox" class="filled-in chk-col-light-blue">
+                                      <label for="checkbox-signup"> Recuérdame </label>
+                                  </div>
+
+                                  <a href="javascript:void(0)" id="to-recover" class="text-dark pull" [routerLink]="['/request-reset-password']" routerLinkActive="router-link-active" ><i class="fa fa-lock m-r-5"></i> Olvide contraseña?</a> </div>
+                          </div>
+                          <div class="form-group text-center ">
+                              <div class="col-xs-6">
+
+                                <button class="btn btn-info  text-uppercase btn-rounded " (click)="ingresar(f)" >Ingresar</button>
+                                  <br>
+                                  <br>
+                                &nbsp; &nbsp;
+                                <span>¿Aun no eres miembro?</span>
+                                <br>
+                                <br>
+                                  <button class="btn btn-info  text-uppercase btn-rounded "(click)="registro()">
+                                    Regístrate</button>
+
+                              </div>
+
+                          </div>
+                          <div class="row">
+                              <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+
+                              </div>
+                          </div>
+
+                      </form>
+
+          <!-- Rrecuperar contraseña -->
+
+
+        </div>
+      </div>
+    </section>
+
+    <div class="col-md-4" align="center">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="modal fade" id="ninera" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel2">SELECCIONE UNA OPCIÓN</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                              <li class=""[routerLink]="['/ninera']" routerLinkActive="router-link-active"data-dismiss="modal">
+                                <a   aria-expanded="false"[routerLink]="['/home']" routerLinkActive="router-link-active"data-dismiss="modal">
+                                  <button type="button" class="btn btn-rounded btn-outline-primary "data-dismiss="modal"><i data-dismiss="modal" class="" [routerLink]="['/home']" routerLinkActive="router-link-active" ></i>ENCONTRAR EMPLEO</button>
+                                    <div class=""data-dismiss="modal"> <span class=""data-dismiss="modal"></span></div>
+                                </a>
+
+                            </li>
+                            <br>
+
+                            <li class=""[routerLink]="['/home2']" routerLinkActive="router-link-active"data-dismiss="modal">
+                              <a   aria-expanded="false"[routerLink]="['/home2']" routerLinkActive="router-link-active"data-dismiss="modal">
+                                <button type="button" class="btn btn-rounded btn-outline-primary "data-dismiss="modal"><i data-dismiss="modal" class="" [routerLink]="['/home2']" routerLinkActive="router-link-active" ></i>PUBLICAR EMPLEO</button>
+                                  <div class=""data-dismiss="modal"> <span class=""data-dismiss="modal"></span></div>
+                              </a>
+
+                          </li>
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal" >CERRAR</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+      </div>

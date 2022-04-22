@@ -1,0 +1,161 @@
+
+ <nav class="navbar navbar-expand-lg navbar-dark static-top"style="background-color:">
+  <div class="container">
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+       <li class="nav-item"routerLinkActive="active">
+      <button class="btn btn-circle" type="button" (click)="atras()"  >REGRESAR</button>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="row">
+  <div class="col-lg-12">
+      <div class="card">
+          <div class="card-header bg-primary">
+              <h4 class="m-b-0 text-white">OFERTA DE EMPLEO</h4>
+          </div>
+          <div class="card-body">
+              <form [formGroup]="registerForm" >
+                  <div class="form-body">
+
+                      <hr>
+                      <div class="row p-t-20">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Título del Empleo</label>
+                                  <input [(ngModel)]="ofertaModelo.tituloEmpleo" formControlName="tituloEmpleo" type="text" id="firstName" class="form-control" placeholder="Título del Empleo">
+                                  <small class="form-control-feedback"></small> </div>
+                          </div>
+                          <!--/span-->
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Breve descripción del empleo:
+                                      </label>
+                                  <textarea [(ngModel)]="ofertaModelo.descripcionEmpleo" formControlName="descripcionEmpleo" type="text" id="lastName" class="form-control" placeholder="Breve descripción"></textarea>
+                                  <small class="form-control-feedback"> </small> </div>
+                          </div>
+                          <!--/span-->
+                      </div>
+                      <!--/row-->
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group has-success">
+                                  <label class="control-label">Remuneración:</label>
+                                  <select [(ngModel)]="ofertaModelo.remuneracion" formControlName="remuneracion" class="form-control custom-select">
+                                      <option value="Fija Mensual">Fija Mensual</option>
+                                      <option value="Eventual por Día">Eventual por Día</option>
+                                      <option value="Eventual por Hora">Eventual por Hora</option>
+                                  </select>
+                                  <small class="form-control-feedback"> </small> </div>
+                          </div>
+                          <!--/span-->
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Valor</label>
+                                  <input [(ngModel)]="ofertaModelo.valor" formControlName="valor" type="number" class="form-control" placeholder="$">
+                              </div>
+                          </div>
+                          <!--/span-->
+                          <div class="col-md-6">
+                          <div class="form-group has-success">
+                              <label class="control-label">Horarios:</label>
+                              <select [(ngModel)]="ofertaModelo.horario" formControlName="horario" class="form-control custom-select">
+                                  <option value="Fijo">Fijo</option>
+                                  <option value="Una Vez">Una Vez</option>
+
+                              </select>
+                              <small class="form-control-feedback"> </small>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <label class="control-label">Categorias</label>
+                              <select [(ngModel)]="ofertaModelo.categorias"  class="form-control custom-select" data-placeholder="CATEGORIAS" tabindex="1"formControlName="categorias">
+                                  <option *ngFor="let opcionesgenerales of opcionesGenerales" value="{{opcionesgenerales.categorias}}">{{opcionesgenerales.categorias}}</option>
+
+                              </select>
+                          </div>
+                      </div>
+                      </div>
+                      <!--/row-->
+                      <div class="row">
+
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="control-label">Provincias</label>
+                                  <select  [(ngModel)]="ofertaModelo.provincia"  name="Provincia" class="browser-default custom-select form-control" formControlName="provincia"
+                                  (change)="selectProvincia($event.target.value)">
+                                  <option *ngFor="let prov of ciuadadesOpcion" value="{{prov.provincia}}">
+                                    {{prov.provincia}}</option>
+                                </select>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Ciudad</label>
+                                <select  [(ngModel)]="ofertaModelo.ciudad" value="{{ofertaModelo.ciudad}}" name="Ciudad" class="browser-default custom-select form-control" formControlName="ciudad">
+                                    <option *ngFor="let canton of ciudad.cantones" value="{{canton}}">
+                                      {{canton}}
+                                    </option>
+                                  </select>
+
+                            </div>
+                        </div>
+                  <!--       <div class="col-md-4">
+                          <div class="form-group">
+                              <label class="control-label">Ciudad seleccionada</label>
+
+                                <div class="form-group">
+
+                                  <input [(ngModel)]="ofertaModelo.ciudad" formControlName="ciudad" type="text" class="form-control" >
+                              </div>
+                          </div>
+                      </div> -->
+
+                          <!--/span-->
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label>Mi Dirección</label>
+                                  <input [(ngModel)]="ofertaModelo.direccion" type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                                    formControlName="direccion" placeholder="Buscar mi ubicación" autocorrect="off" autocapitalize="on"
+                                    spellcheck="off" type="text" #search>
+                                </div>
+                          </div>
+                          <div class="col-md-6" *ngFor="let planes of plan"   >
+                              <div class="form-group"  *ngIf="planes != null">
+                                  <label class="control-label">Estado de la oferta seleccione una opción</label>
+                                  <select   [ngClass]="{'bg-primary text-white':ofertaModelo.estado=='PUBLICADO','bg-danger text-white':ofertaModelo.estado=='NO PUBLICADO'}" formControlName="estado"  class="form-control custom-select text" data-placeholder="Seleccionar" tabindex="1"[(ngModel)]="ofertaModelo.estado"
+                                  (change)="updateEstado()">
+
+                                      <option class="text" value="PUBLICADO">PUBLICADO</option>
+                                      <option class="text"  value="NO PUBLICADO">NO PUBLICADO</option>
+
+                                  </select>
+                              </div>
+                          </div>
+                          <!--/span-->
+                      </div>
+                      <!--/row-->
+
+
+                  </div>
+                  <div class="form-actions">
+                      <button type="submit" class="btn btn-primary"(click)="update()"><i class="fa fa-save"></i>ACTUALIZAR</button>
+                      &nbsp;&nbsp;
+                      <button type="submit" class="btn btn-danger"(click)="eliminar()"> <i class="fa fa-check"></i>ELIMINAR</button>
+                      &nbsp;&nbsp;
+
+                  </div>
+                  <div  class="row m-0 justify-content-center align-items-center vh-100 " *ngFor="let planes of plan" >
+                    <button   *ngIf="planes != null" type="submit" class="btn btn-primary"(click)="updateEstado2()"><i class="fa fa-hand-pointer-o"></i>PUBLICAR</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>

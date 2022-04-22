@@ -1,0 +1,79 @@
+<div class=" container p-3 " class="col-sm">
+    <h3 align="center" id="color">OFERTAS PARA PUBLICAR</h3>
+</div>
+<br>
+<div class="container">
+    <div class="row justify-content-between">
+        <!--Accordion wrapper-->
+        <div style="width:100%" class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+            <!-- Accordion card -->
+            <div class="card caja0" *ngFor="let form of  formularios| paginate: { itemsPerPage: 5, currentPage: totalRegistros }; let i = index">
+        
+            <!-- Card header -->
+            <div class="card-header" role="tab" id="heading{{i}}">
+                <a data-toggle="collapse" data-parent="#accordionEx" href="#collapse{{i}}" aria-expanded="false"
+                aria-controls="collapse{{i}}">
+                    <div class="row">
+                        <div class="col-10">
+                            <h5 class="mb-0">
+                                {{form.tituloEmpleo}} 
+                            </h5>
+                        </div>
+                        <div class="col-2">
+                            <i class="fas fa-arrow-alt-circle-down fa-1x" style="text-align:right;float:right"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
+            <!-- Card body -->
+            <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading{{i}}"
+                data-parent="#accordionEx">
+                <div class="card-body">
+                    <div class="card caja0" style="padding:2%">
+                        <div class="row">
+                            <div class="col-6">
+                                <h5 class= "card-header" style="background: azure">TÍTULO EMPLEO</h5>
+                                <p class="card-text">{{form.tituloEmpleo}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h5 class= "card-header" style="background: azure"  >CATEGORIA</h5>
+                                <p class="card-text">{{form.categorias}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h5 class= "card-header" style="background: azure">FECHA CREACIÓN</h5>
+                                <p class="card-text">{{form.fechaReporte | date:'dd-MM-yyyy'}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h5 class= "card-header" style="background: azure">HORARIO</h5>
+                                <p class="card-text">{{form.horario}}</p>
+                            </div>
+                            <div class="col-6">
+                                <h5 class= "card-header" style="background: azure">ESTADO</h5>
+                                <p [ngClass]="{'bg-primary text-white':form.estado=='PUBLICADO','bg-danger text-white':form.estado=='NO PUBLICADO'}">{{form.estado}}</p>
+                            </div>
+                            <div class="col-12">
+                                <h5 class= "card-header" style="background: azure">DESCRIPCIÓN</h5>
+                                <p class="card-text">{{form.descripcionEmpleo}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="padding-right: 4%;padding-bottom: 2%;" class="col-12">
+                                <button type="button" class="btn btn-outline-primary" style="width: 100%;height: auto;font-size: 100%;"[routerLink]="['/dashboard/editaroferta/',form._id]"><b>EDITAR</b></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            </div>
+            <!-- Accordion card -->
+        </div>
+        <!-- Accordion wrapper -->
+    </div>
+    <br>
+    <br>
+    <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+    
+</div>

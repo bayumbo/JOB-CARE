@@ -1,0 +1,140 @@
+<div class=" container p-3 " class="col-sm">
+  <h3 align="center" id="color">POSTULACIÓN OFERTAS </h3>
+</div>
+
+<br>
+
+<div class="container">
+  <div class="row justify-content-between">
+    <!--Accordion wrapper-->
+    <div style="width:100%" class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+
+        <!-- Accordion card -->
+        <div class="card caja0" *ngFor="let post of  notifications | paginate: { itemsPerPage: 5, currentPage: totalRegistros }; let i = index">
+
+        <!-- Card header -->
+        <div class="card-header" role="tab" id="heading{{i}}">
+            <a data-toggle="collapse" data-parent="#accordionEx" href="#collapse{{i}}" aria-expanded="false"
+            aria-controls="collapse{{i}}">
+                <div class="row">
+                    <div class="col-10">
+                        <h5 class="mb-0">
+                          {{post.trasmitter.email }}
+                        </h5>
+                    </div>
+                    <div class="col-2">
+                        <i class="fas fa-arrow-alt-circle-down fa-1x" style="text-align:right;float:right"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Card body -->
+        <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="heading{{i}}"
+            data-parent="#accordionEx">
+            <div class="card-body">
+              <div class="card caja0" style="padding:2%">
+                <!--<h5 class= "card-header" style="background: azure">Nº</h5>
+                <p class="card-text">{{i+1}}</p>-->
+                <h5 class= "card-header" style="background: azure">CORREO</h5>
+                <p class="card-text">{{post.trasmitter.email }}</p>
+                <h5 class= "card-header" style="background: azure"  >TELÉFONO</h5>
+                <p class="card-text">{{post.trasmitter.telefono }}</p>
+                <h5 class= "card-header" style="background: azure">CATEGORIA</h5>
+                <p class="card-text">{{post.receiverHoja.categorias }}</p>
+                <h5 class= "card-header" style="background: azure">CALIFICACIÓN</h5>
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter" style="width: 50%;height: auto;font-size: 100%;margin-top: 1%;margin-bottom: 1%;" (click)="calificar(post.receiverHoja._id)"><b>CALIFICAR</b></button>
+                <h5 class= "card-header" style="background: azure">VER HOJA DE VIDA</h5>
+                <a type="button" class="btn btn-outline-primary" *ngIf="post.receiverHoja.urlPdf != null" href="{{post.receiverHoja.urlPdf}}" style="width: 100%;height: auto;font-size: 100%;" target="_blank"><b>VER HOJA DE VIDA</b></a>
+              </div>
+            </div>
+        </div>
+
+        </div>
+        <!-- Accordion card -->
+    </div>
+    <!-- Accordion wrapper -->
+  </div>
+  <br>
+  <br>
+  <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#56c2c6" type="ball-scale-multiple">
+    <p style="font-size: 20px; color: rgb(35, 192, 219)">Calificando...</p>
+  </ngx-spinner>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">CALIFICA EL SERVICIO DE LOS POSTULANTES</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group has-success">
+
+          <form [formGroup]="registerForm">
+            <label class="control-label">CONTRATASTE:</label>
+            <br>
+            <span class="field-label-info">En caso de haber contratado seleccione si para calificar</span>
+            <select class="form-control custom-select" (change)="cal()" formControlName="contratado">
+              <option value="">SELECCIONE</option>
+              <option value="SI">SI</option>
+              <option value="NO">NO</option>
+
+            </select>
+          </form>
+
+          <small class="form-control-feedback"> </small>
+        </div>
+        <div class="form-group" id="rating-ability-wrapper" *ngIf="(dato ==='SI')" >
+          <label class="control-label" for="rating">
+
+            <span class="field-label-info"></span>
+            <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
+          </label>
+          <h2 class="bold rating-header">
+            <span class="selected-rating">0</span><small> / 5</small>
+          </h2>
+          <button type="button" class="btnrating btn btn-default btn-lg" data-attr="1" id="rating-star-1"
+            (click)="presionar(1)">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </button>
+          &nbsp;
+          <button type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="rating-star-2"
+            (click)="presionar(2)">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </button>
+          &nbsp;
+          <button type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="rating-star-3"
+            (click)="presionar(3)">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </button>
+          &nbsp;
+          <button type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="rating-star-4"
+            (click)="presionar(4)">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </button>
+          &nbsp;
+          <button type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="rating-star-5"
+            (click)="presionar(5)">
+            <i class="fa fa-star" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+
+      </div>
+    </div>
+  </div>
+
+</div>

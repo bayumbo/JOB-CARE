@@ -1,0 +1,49 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class=" container p-3 " class="col-sm">
+                    <h3 align="center" id="color">MIS POSTULACIONES</h3>
+                </div>
+                <br>
+                <div class="card mb-3" style="max-width: 100%;" *ngFor="let form of  notifications | paginate: { itemsPerPage: 5, currentPage: totalRegistros }; let i = index">
+                    <div class="row g-0">
+                    <div class="col-md-4">
+                        <p class="numero">{{i+1}}</p>
+                        <br>
+                        <h2 style="text-align: center;" class="card-title">{{form.receiverOferta.tituloEmpleo}}</h2>
+                        <p style="text-align: center;" class="card-text"><small class="text-muted"><strong>{{form.receiverOferta.categorias}} / {{form.receiverOferta.fechaReporte  | date:'dd-MM-yyyy'}} / {{form.receiverOferta.estado}}</strong></small></p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                        <h3>Descripción de la oferta</h3>
+                        <p style="text-align: justify;line-height: 17px;" class="card-text">{{form.receiverOferta.descripcionEmpleo}}</p>
+                        <p class="card-text">Remuneración {{form.receiverOferta.remuneracion}}</p>
+                        <p class="card-text">Por el valor de ${{form.receiverOferta.valor}}</p>
+                        <p class="card-text">{{form.receiverOferta.provincia}} - {{form.receiverOferta.ciudad}}</p>
+                        <p class="card-text">{{form.receiverOferta.emailEmpleador}}</p>
+                        <p class="card-text">{{form.receiverOferta.telefonoEmpleador}}</p>
+                        <button (click)=" eliminar(form)" class="btn btn-danger">
+                            <i class="fa fa-trash-o"></i> Eliminar postulación
+                          </button>
+                        <div class="row g-0">
+                            <div class="col-md-12" style="margin-top:1%">
+                                <button type="button" class="btn btn-outline-primary boton" *ngIf="form.uri!= null"
+                                [routerLink]="['/dashboard/ofertaCompleta/',form.uri]" ><b>VER OFERTA</b></button>
+                                <span *ngIf="form.uri == null"  >OFERTA NO DISPONIBLE</span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <br>
+            <br>
+            <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

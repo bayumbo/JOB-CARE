@@ -1,0 +1,160 @@
+
+
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+
+.container-fluid {
+  background: #FF512F;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, rgba(221, 36, 118, 0.7), rgba(255, 81, 47, 0.7)), url('../../../assets/images/form-bg.jpg');  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, rgba(221, 36, 118, 0.7), rgba(255, 81, 47, 0.7)), url('../../../assets/images/form-bg.jpg'); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: cover;
+    margin:0px;
+  
+
+}
+
+.container-fluid {
+  height: 100vh;
+}
+
+.container-fluid.form.signup {
+  height: 100%;
+  background-attachment: fixed;
+}
+
+.form-control {
+  padding-left: 1.2rem;
+   border-radius:40px;
+}
+
+.form-group span {
+  color: red;
+  margin:5px 2px
+}
+
+.button-image:before {
+  content: "";
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background-size: 150%;
+  vertical-align: text-top;
+  background-color: transparent;
+  background-position : center center;
+  background-repeat:no-repeat;
+}
+
+.btn-circle {
+border-radius:50%;
+background-color:#ffffff;
+padding:10px;
+margin-top:10px;
+transition: all .4s;
+}
+
+.closeButton:before{
+   background-image : url('../../../assets/images/close-btn.png');
+
+}
+
+
+
+
+
+.card.card-signin.my-5,
+.card.card-signup.my-5 {
+ /* background-color: rgba(255, 255, 255, 0.6); */
+  margin: 0 auto;
+}
+
+ 
+
+.col-sm-9.col-md-7.col-lg-5.mx-auto {
+  align-items: center;
+  display: flex;
+  margin-top:0px
+}
+
+
+
+.card-signin,
+.card-signup {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-signin .card-title,
+.card-signup .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body,
+.card-signup .card-body {
+  padding: 2rem;
+}
+
+.form-signin,
+.form-signup {
+  width: 100%;
+}
+
+.form-signin .btn,
+.form-signup .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+
+
+.form-signin input,
+.form-signup input {
+  border-radius: 2rem;
+  
+}
+
+.btn-link {
+  color:#999999 
+
+  
+}
+
+
+
+.submit-btn {
+  color: white;
+  background: #FF512F;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #DD2476, #FF512F);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #DD2476, #FF512F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  transition: all .4s;
+}
+
+.submit-btn:hover,
+.btn-circle:hover {
+  transform: scale(1.07);
+}
+
+
+#errorMsg {
+  background: #f6b2b5;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+#errorMsg span {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  position: relative;
+  float: left;
+  font-size: 15px;
+}

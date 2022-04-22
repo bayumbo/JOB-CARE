@@ -1,0 +1,172 @@
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#/dashboard">
+                        <!-- Logo icon --><b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="../../../assets/images/j-logoreco.png"  alt="homepage" class="dark-logo" (click)="activar()">
+
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text --><span>
+                         <!-- dark Logo text -->
+                         <img src="../../../assets/images/text-logo.png"  alt="homepage" class="dark-logo" (click)="activar()">
+                         <!-- Light Logo text -->
+                         <img src="./assets/images/logo-icon.png" class="light-logo" alt="homepage" (click)="activar()" /></span> </a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item hidden-sm-down"></li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0">
+
+                                   <!-- Comment -->
+                <!-- ============================================================== -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"style="font-size:1vw">Bienvenido ! {{usuario.email}} estás en modo “ {{usuario.role | roles}} ”
+                        <div class="notify">  </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right mailbox animated fadeIn fast">
+                        <ul>
+
+                            <li>
+                                <div class="message-center">
+                                    <!-- Message -->
+                                    <a>
+                                        <div class="btn btn-danger btn-circle"><i class="fa fa-handshake-o" (click)="guardarUsuario( usuario )"></i></div>
+                                        &nbsp;&nbsp;
+                                        <div class="mail-contnet">
+                                            <h5 (click)="actualizarRol( usuario )">CABIAR A MODO</h5> <span class="mail-desc" (click)="actualizarRol( usuario )">EMPLEADO</span>  </div>
+                                    </a>
+                                    <!-- Message -->
+                                    <a >
+                                        <div class="btn btn-success btn-circle"><i class="fa fa-briefcase" (click)="guardarUsuario1( usuario )"></i></div>
+                                        &nbsp;&nbsp;
+                                        <div class="mail-contnet">
+                                            <h5 (click)="actualizarRol1( usuario )">CABIAR A MODO</h5> <span class="mail-desc" (click)="actualizarRol1( usuario )">EMPLEADOR</span></div>
+                                    </a>
+                                    <!-- Message -->
+
+
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
+                <!-- ============================================================== -->
+                <!-- End Comment -->
+              <!-- Comment -->
+                <!-- ============================================================== -->
+                  <!-- Messages -->
+                <!-- ============================================================== -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle waves-effect waves-dark"
+                  (click)="getNotifications()" id="2"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="mdi mdi-email"></i>
+                      <div class="notify" *ngIf="notifications.length > 0">
+                          <span class="heartbit"></span>
+                          <span class="point"></span>
+                      </div>
+                  </a>
+                  <div class="dropdown-menu mailbox dropdown-menu-right animated fadeIn fast" aria-labelledby="2">
+                      <ul>
+                          <li>
+                              <div class="drop-title">Tienes {{ newNotifications }} notificaciones nuevas</div>
+                          </li>
+                          <li >
+                              <div class="message-center">
+                                  <!-- Message -->
+                                  <a *ngFor="let notification of notifications"
+                                  style="cursor: pointer;" (click)="viewNotification(notification)">
+                                      <div class="user-img">
+                                          <img [src]="notification.trasmitter.img | imagen" alt="user" class="img-circle">
+                                      </div>
+                                      <div class="mail-contnet">
+                                          <h5>{{ notification.trasmitter.nombre }}</h5>
+                                          <span class="mail-desc">
+                                              <b>Correo: </b>{{ notification.title }}
+                                          </span>
+                                          <span class="msg">
+                                              {{ notification.detalle }}
+                                          </span>
+                                          <div class="row">
+                                              <span class="time col-md-6">
+                                                  {{ notification.fechaReporte | date: 'short' }}
+                                              </span>
+                                              <span class="time col-md-4 btn btn-primary text-white " *ngIf="!notification.view">
+                                                 Nuevo
+                                              </span>
+                                              <button type="button" class="btn btn-outline-danger col-md-5 col-sm-12 mr-1 mt-1" style="width: 10;height: 45;font-size: 90%;"(click)="eliminar(notification)">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                                          </div>
+                                      </div>
+                                  </a>
+                              </div>
+                          </li>
+                          <!-- <li>
+                              <a class="nav-link text-center" [routerLink]="'/dashboard/notificationAll'"
+                              > <strong>Ver todas </strong> <i class="fa fa-angle-right"></i> </a>
+                          </li> -->
+                      </ul>
+                  </div>
+              </li>
+              <!-- ============================================================== -->
+              <!-- End Messages -->
+              <!-- ============================================================== -->
+              <!-- ============================================================== -->
+              <!-- End Comment -->
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+
+                        <!-- ============================================================== -->
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img [src]="usuario.img | imagen" alt="user" class="profile-pic" /></a>
+                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                                <ul class="dropdown-user">
+                                    <li>
+                                        <div class="dw-user-box">
+                                            <div class="u-img"><img [src]="usuario.img | imagen" alt="user" /></div>
+                                            <div class="u-text">
+                                                <h4>{{usuario.usuario}}</h4>
+                                                <p class="text-muted">{{usuario.email}}</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm"[routerLink]="['/dashboard/perfil']" routerLinkActive="router-link-active" >Ver Perfil</a></div>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+
+                           <!--       <li><a  [routerLink]="['/dashboard/account-settings']" routerLinkActive="router-link-active" ><i class="ti-settings"></i>Temas</a></li>  -->
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#"><i class="fa fa-power-off" (click)="cerrarSesion()"></i> Cerrar Sesión</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->

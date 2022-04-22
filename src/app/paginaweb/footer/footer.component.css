@@ -1,0 +1,16 @@
+.footer-top .container{
+    width: auto !important;
+}
+
+.container{
+    width: auto !important;
+}
+
+#pruebaDiv {
+	display: -webkit-box !important;
+}
+@media (max-width: 991px) {
+	#pruebaDiv {
+		display: flex !important;
+	}
+}

@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.jobandcare.app",
+    "sha256_cert_fingerprints":
+    ["65:F6:58:69:FC:DC:A1:38:13:F6:BA:55:C6:2B:97:42:21:AF:2E:7F:3F:6E:D5:48:42:92:B6:B3:90:A7:10:60"]
+  }
+}]

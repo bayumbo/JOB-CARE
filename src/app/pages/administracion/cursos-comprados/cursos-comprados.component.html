@@ -1,0 +1,44 @@
+<div class=" container p-3 " class="col-sm">
+    <h3 align="center" id="color">CURSOS COMPRADOS</h3>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-hover table-responsive btn-table  table-bordered "  id="tableColor" >
+                <thead>
+                    <tr>
+                        <th scope="col" COLSPAN=1 style="background: azure">Nº</th>
+                        <th scope="col" COLSPAN=1 style="background: azure">TÍTULO CURSO</th>
+                        <th scope="col" COLSPAN=1 style="background: azure">CATEGORIA</th>
+                        <th scope="col" COLSPAN=1 style="background: azure">FECHA COMPRA</th>
+                   
+                   
+                        <th scope="col" COLSPAN=1 style="background: azure">VALOR</th>
+                     
+                   
+                    
+                        <th scope="col" COLSPAN=1 style="background: azure">CORREO</th>
+                        <th scope="col" COLSPAN=1 style="background: azure">TELÉFONO</th>
+                        <th scope="col" COLSPAN=1 style="background: azure">ROL USUARIO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let form of  formularios| paginate: { itemsPerPage: 5, currentPage: totalRegistros }; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{form.tituloCurso}}</td>
+                        <td>{{form.categorias}}</td>
+                        <td>{{form.fechaReporte |date:'dd-MM-yyyy'}}</td>
+                     
+                        <td>{{form.valor |currency:'USD'}}</td>
+                        <td>{{form.usuario.email}}</td>
+                        <td>{{form.usuario.telefono}}</td>
+                        <td>{{form.usuario.role}}</td>
+                    </tr>                  
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+        </div>
+    </div>
+</div>

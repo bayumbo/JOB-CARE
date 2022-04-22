@@ -1,0 +1,162 @@
+<app-header-pagina></app-header-pagina>
+<img src="../../../../assets/images/CM/MASCOTAS.PNG" alt=""  class="img-responsive">
+<br>
+<br>
+
+<div class="container ">
+
+
+
+
+  <!--AQUI EMPEZA EL FORMULARIO-->
+
+  <form [formGroup]="registerForm" (ngSubmit)="crearUsuario()">
+
+    <div class="content text-center">
+
+      <h2 align="center" joyrideStep="prime" title="Bienvenido" text="Estas en la categoria Cuidado de mascotas llena los cuatro campos para que te registres en nuestra plataforma ">Regístrate</h2>
+
+   <!--    <div class="form-group">
+
+        <input type="text" class="form-control col-6" placeholder="USUARIO" formControlName="usuario" />
+
+
+        <div *ngIf="registerForm.get('usuario').errors && registerForm.get('usuario').dirty">
+          <p class="text-danger center" *ngIf="registerForm.get('usuario').hasError('required')">
+            <span size="2">Usuario es requerido</span>
+          </p>
+          <p class="text-danger center" *ngIf="registerForm.get('usuario').hasError('minlength')">
+            <span size="2">Minimo de 3 Caracteres</span>
+          </p>
+          <p class="text-danger center" *ngIf="registerForm.get('usuario').hasError('maxlength')">
+            <span size="2">Maximo de 30 Caracteres</span>
+          </p>
+
+        </div>
+
+      </div> -->
+      <div class="form-group">
+
+        <input type="text" class="form-control col-6" placeholder="TELEFONO" formControlName="telefono" />
+
+        <div *ngIf="registerForm.get('telefono').errors && registerForm.get('telefono').dirty">
+          <p class="text-danger center" *ngIf="registerForm.get('telefono').hasError('required')">
+            <span size="2">Telefono es requerido</span>
+          </p>
+          <p class="text-danger center" *ngIf="registerForm.get('telefono').hasError('minlength')">
+            <span size="2">Minimo de 10 Caracteres</span>
+          </p>
+          <p class="text-danger center" *ngIf="registerForm.get('telefono').hasError('maxlength')">
+            <span size="2">Maximo de 10 Caracteres</span>
+          </p>
+
+        </div>
+      </div>
+
+
+      <div class="form-group">
+
+        <input type="email" class="form-control col-6" id="exampleInputEmail1" placeholder="CORREO ELECTRONICO"
+          formControlName="email" />
+
+        <div *ngIf="registerForm.get('email').errors && registerForm.get('email').dirty">
+          <p class="text-danger center" *ngIf="registerForm.get('email').hasError('required')">
+            <span size="2">Email es requerido</span>
+          </p>
+          <p class="text-danger center"
+            *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].hasError('pattern')">
+            <span size="2">Tiene que ser una dirección de correo electrónico válida.
+              Ejemplo :("mail@.com").
+            </span>
+          </p>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+
+        <input type="password" class="form-control col-6" id="exampleInputPassword1" placeholder="CONTRASEÑA"
+          formControlName="password" />
+      </div>
+
+   <!--   <div class="form-group">
+        <input type="number" class="form-control col-6" id="exampleInputPassword1"
+          placeholder="CLAVE DE VERIFICACIÓN ENVIADA AL CORREO" formControlName="clave" />
+
+
+        <div *ngIf="registerForm.get('clave').errors && registerForm.get('clave').dirty">
+          <p class="text-danger center" *ngIf="registerForm.get('clave').hasError('required')">
+            <span size="2">Clave es requerida, verifica email para enviarte una clave</span>
+          </p>
+          <p class="text-danger center" *ngIf="registerForm.get('clave').hasError('minlength')">
+            <span size="2">Minimo de 4 Caracteres</span>
+          </p>
+          <p class="text-danger center" *ngIf="registerForm.get('clave').hasError('maxlength')">
+            <span size="2">Maximo de 4 Caracteres</span>
+          </p>
+
+        </div>
+      </div>
+-->
+      <div class="form-group">
+
+        <h2 align="center">Como nos encontraste</h2>
+        <div class=" row m-0 justify-content-center align-items-center vh-100">
+          <div class="form-group">
+
+            <div class="input-group ">
+              <ul class="icheck-list" class="list">
+                <li>
+                  <input type="checkbox" class="check form-control" id="minimal-checkbox-1" formControlName="facebook">
+                  <label for="minimal-checkbox-1">Facebook</label>
+                </li>
+                <li>
+                  <input type="checkbox" class="check form-control" id="minimal-checkbox-2" formControlName="twitter">
+                  <label for="minimal-checkbox-2">Twitter</label>
+                </li>
+                <li>
+                  <input type="checkbox" class="check form-control" id="minimal-checkbox-3" formControlName="instagram">
+                  <label for="minimal-checkbox-3">Instagram</label>
+                </li>
+                <li>
+                  <input type="checkbox" class="check form-control" id="minimal-checkbox-4" formControlName="linkedin">
+                  <label for="minimal-checkbox-4">LinkedIn</label>
+                </li>
+
+
+              </ul>
+
+            </div>
+             <!--<button class="btn btn-primary mt-5" (click)="RevisandoEmail()">ENVIAR CLAVE A EMAIL</button> -->
+             <div class="row">
+              <div class="col text-danger">
+                 <!--  <p *ngIf="campoNoValido('usuario')">Debe llenar el campo usuario</p> -->
+                  <p *ngIf="campoNoValido('telefono')">Debe llenar el campo teléfono 10 caracteres ejemplo: 0900 000 000</p>
+                  <p *ngIf="campoNoValido('email')">Debe llenar el campo email</p>
+                  <p *ngIf="campoNoValido('password')">Debe poner una contraseña para completar el registro</p>
+              </div>
+
+             </div>
+
+            &nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary mt-5"
+             >REGISTRAR</button>
+              &nbsp;&nbsp;
+              <button type="button" class="btn btn-success mt-5" (click)="mascotas()"><i><img src="../../../../assets/images/patch-question.svg" alt=""></i></button>
+            <!--   &nbsp;&nbsp;
+              <button  class="btn btn-primary mt-5" [routerLink]="['/login']" routerLinkActive="router-link-active" >INGRESAR</button> -->
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </form>
+
+
+
+</div>
+
+<app-footer></app-footer>

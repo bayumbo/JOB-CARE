@@ -1,0 +1,134 @@
+<app-header-pagina></app-header-pagina>
+<!--==========================
+      Contact Section
+    ============================-->
+<section id="contact">
+    <div class="container-fluid">
+
+        <div class="section-header">
+            <h3>CONTACTO</h3>
+            <div class="heading-line"></div>
+        </div>
+
+        <div class="row wow fadeInUp" id="pruebaDiv">
+
+            <div class="col-lg-6">
+                <div class="map mb-4 mb-lg-0">
+
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.8004278951976!2d-78.46506968590367!3d-0.17159163547261988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMTAnMTcuOCJTIDc4wrAyNyc0Ni40Ilc!5e0!3m2!1ses!2sec!4v1616856371630!5m2!1ses!2sec" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="row" id="pruebaDiv">
+                    <div class="col-md-5 info">
+                        <i class="ion-ios-location-outline"></i>
+                        <p>República del salvador y portugal</p>
+                    </div>
+                    <div class="col-md-4 info">
+                        <i class="ion-ios-email-outline"></i>
+                        <p>info@jobandcare.com</p>
+                    </div>
+                    <div class="col-md-3 info">
+                        <i class="ion-ios-telephone-outline"></i>
+                        <p> 098-046-5341 / 098-350-2712  </p>
+                    </div>
+                </div>
+
+                <div class="form">
+                    <div id="sendmessage">Tu mensaje ha sido enviado. ¡Gracias!</div>
+                    <div id="errormessage"></div>
+                    <form method="post" class="contactForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="form-group col-lg-6">
+                                <input type="text" [formControl]="nombre" class="form-control" id="name"
+                                    placeholder="Tu Nombre*" data-rule="minlen:4" name="nombre"
+                                    data-msg="Please enter at least 4 chars" />
+                                <!--Validaciones y errores-->
+                                <div *ngIf="nombre.hasError('required') && nombre.touched"
+                                    style="color:red">
+                                    Introduzca su nombre
+                                </div>
+                                <div *ngIf="nombre.hasError('minlength')" style="color:red">
+                                    El nombre debe ser minimo de 4 caracteres
+                                </div>
+                                <div *ngIf="nombre.hasError('pattern')" style="color:red">
+                                    Introduzca un nombre válido
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <input type="email" class="form-control" [formControl]="email" name="email" id="email"
+                                    placeholder="Tu Email*" data-rule="email" data-msg="Please enter a valid email" />
+                                <!--Validaciones y errores-->
+                                <div *ngIf="email.hasError('required') && email.touched"
+                                    style="color:red">
+                                    Introduzca su email
+                                </div>
+                                <div *ngIf="email.hasError('pattern')" style="color:red">
+                                    Introduzca un email válido
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" [formControl]="asunto" name="asunto" id="subject"
+                                placeholder="Asunto*" data-rule="minlen:4"
+                                data-msg="Please enter at least 8 chars of subject" />
+                            <!--Validaciones y errores-->
+                            <div *ngIf="asunto.hasError('required') && asunto.touched"
+                                style="color:red">
+                                Introduzca su asunto
+                            </div>
+                            <div *ngIf="asunto.hasError('minlength')" style="color:red">
+                                El asunto debe ser minimo de 4 caracteres
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="mensaje" rows="5" [formControl]="mensaje"
+                                data-rule="required" data-msg="Please write something for us"
+                                placeholder="Mensaje"></textarea>
+                            <!--Validaciones y errores-->
+                            <div *ngIf="mensaje.hasError('minlength') && mensaje.touched"
+                                style="color:red">
+                                El mensaje debe tener minimo 4 caracteres
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" href="#myModal" class="btn btn-outline-primary"
+                            style="font-size: 14px" data-toggle="modal"
+                            [disabled]="email.invalid || nombre.invalid || asunto.invalid">
+                                Enviar Mensaje
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- #contact -->
+<app-footer></app-footer>
+<br>
+<br>
+<br>
+<br>
+<a id="iconoWhatsappModal" href='https://api.whatsapp.com/send?phone=593992752317&text=Hola quiero mas información acerca de sus servicios, espero su respuesta por este medio, muchas gracias' target="_blank" class="back-to-top"><i class="fab fa-whatsapp fa-2x"></i></a>
+<!-- Modal HTML -->
+<div id="myModal" class="modal">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="icon-box">
+                    <i class="material-icons">&#xE876;</i>
+                </div>
+                <h4 class="modal-title">Gracias {{ nombre.value }}!</h4>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-center">Su mensaje a sido confirmado, pronto nos pondremos en contacto con usted</h5>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>

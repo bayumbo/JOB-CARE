@@ -1,0 +1,379 @@
+<app-header-pagina></app-header-pagina>
+
+
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row animated fadeIn m-0 justify-content-center align-items-center vh-100 ">
+                    <div class="col-10">
+                        <div class="card">
+                           <!--  <div class="card-body">
+
+                                <input #input (keyup)="buscarHoja( input.value )" type="text" class="form-control"
+                                    placeholder="Buscar ofertas...">
+
+                            </div> -->
+                            <div>
+
+                              <select class="form-control text-uppercase has-dropdown" name="tipo" #input (change)="buscarHoja( input.value )">
+                                <option value="">TODAS LAS CATEGORIAS</option>
+                                <option value="NIÑERAS">NIÑERAS</option>
+                                <option value="CUIDADO ADULTO MAYOR">CUIDADO ADULTO MAYOR</option>
+                                <option value="SERVICIO DOMESTICO">SERVICIO DOMESTICO</option>
+                                <option value="CUIDADO DE MASCOTAS">CUIDADO DE MASCOTAS</option>
+                                <option value="CUIDADOS CAPACIDADES ESPECIALES">CUIDADOS CAPACIDADES ESPECIALES</option>
+                                <option value="TUTORIAS ESCOLARES">TUTORIAS ESCOLARES</option>
+                                <option value="TRABAJOS DEL HOGAR">TRABAJOS DEL HOGAR</option>
+                                <option value="ASISTENCIA AUTOMOTRIZ">ASISTENCIA AUTOMOTRIZ</option>
+                                <option value="MENSAJERIA">MENSAJERIA</option>
+                                <option value="SPA">SPA</option>
+                                <option value="OTROS">OTROS</option>
+                                <option value="PROFESIONALES TITULADOS">PROFESIONALES TITULADOS</option>
+                              </select>
+
+                            </div>
+                        </div>
+                        <div class="alert alert-primary " role="alert ">
+                            <em class="text2">En esta sección podemos ver los perfiles generales de nuestra página te
+                                aconsejamos resgistrarte en una de nuestras categorias sea para publicar una oferta o
+                                que buscan empleo
+                                tambien puedes usar nuestro buscador para ver los perfiles, puedes buscar por categorias,
+                                nombre, horarios.
+                            </em>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row animated fadeIn" *ngIf="cargando">
+
+                    <div class="col-sm-12">
+
+                        <div class="alert alert-warning text-center">
+                            <strong>Cargando</strong>
+                            <br>
+                            <i class="fa fa-refresh fa-spin fa-2x"></i>
+                            <br>
+                            <span>Espere por favor</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class=" container p-3 " class="col-sm">
+                    <h3 align="center" id="color">PERFILES PUBLICADOS</h3>
+                </div>
+
+
+                <div class="container">
+                    <div class="row" *ngIf="!cargando">
+                        <div class="col-12">
+                            <table class="table table-hover table-responsive tabla" id="tableColor">
+                                <thead>
+                                    <tr>
+                                            <th  scope="col" COLSPAN=1 style="background: azure">IMAGEN</th>
+                                            <th  scope="col" COLSPAN=1 style="background: azure">NOMBRE</th>
+                                            <th  scope="col" COLSPAN=1 style="background: azure">DESCRIPCIÓN</th>
+
+                                            <th  scope="col" COLSPAN=1 style="background: azure">TELÉFONO</th>
+                                            <th  scope="col" COLSPAN=1 style="background: azure">CIUDAD</th>
+                                            <th  scope="col" COLSPAN=1 style="background: azure">OCUPACIÓN</th>
+                                            <th scope="col" COLSPAN=1 style="background: azure">CALIFICACIÓN</th>
+                                            <th  scope="col" COLSPAN=1 style="background: azure" joyrideStep="perfil" title="Bienvenido"
+                                                text="Presiona el boton en la sección de categoria para que te redirija a la parte de registro y puedas ver estas ofertas en nuestra plataforma ">
+                                                CATEGORIA</th>
+
+                                            <th  scope="col" COLSPAN=1 style="background: azure">GUIA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let form of  formularios| paginate: { itemsPerPage: 10, currentPage: totalRegistros }; let i = index">
+                                     <td class="w70">
+                                                <img [src]="form.usuario.img |imagen" class="img-50 img-circle pointer">
+                                            </td>
+                                            <td> {{form.nombre}} {{form.apellido}}</td>
+                                            <td>{{form.descripcion}}</td>
+
+                                            <td> {{form.usuario.telefono}} </td>
+                                            <td><i class="bi bi-geo-alt-fill"></i>{{form.ciudad}}</td>
+                                            <td>{{form.ocupacion}}</td>
+                                            <td>
+                                              <span *ngIf="form.rating==1">⭐</span>
+                                              <span *ngIf="form.rating==2">⭐⭐</span>
+                                              <span *ngIf="form.rating==3">⭐⭐⭐</span>
+                                              <span *ngIf="form.rating==4">⭐⭐⭐⭐</span>
+                                              <span *ngIf="form.rating==5">⭐⭐⭐⭐⭐</span>
+                                              <br>
+                                              <span *ngIf="form.rating==1">NO RECOMENDADO</span>
+                                              <span *ngIf="form.rating==2">REGULAR</span>
+                                              <span *ngIf="form.rating==3">BUENO</span>
+                                              <span *ngIf="form.rating==4">MUY BUENO</span>
+                                              <span *ngIf="form.rating==5">EXCELENTE</span>
+                                            </td>
+                                            <td>
+                                                <span *ngIf="(form.categorias ==='NIÑERAS')" #ruta>
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/nineraEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='CUIDADO ADULTO MAYOR')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/cuidadoAdultoEmpleador"> {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='SERVICIO DOMESTICO')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/domesticoEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='CUIDADO DE MASCOTAS')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/mascotaEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='CUIDADOS CAPACIDADES ESPECIALES')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/capacidadesEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='TUTORIAS ESCOLARES')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/tutoriasEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='TRABAJOS DEL HOGAR')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/trabajosEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='ASISTENCIA AUTOMOTRIZ')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/asistenciaEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='MENSAJERIA')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/mensajeriaEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='SPA')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/spaEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='PROFESIONALES TITULADOS')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/profesionalEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='OTROS')">
+                                                    <a type="button" class="btn btn-outline-primary">
+                                                        {{form.categorias}}</a>
+                                                </span>
+
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-success" (click)="asistencia()"
+                                                    style="width: 85px;height: 75;font-size: 50%;"><i><img
+                                                            src="../../../../assets/images/patch-question.svg"
+                                                            alt=""></i></button>
+                                            </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <br>
+                            <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<app-footer></app-footer>
+
+
+<!--
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row animated fadeIn m-0 justify-content-center align-items-center vh-100 ">
+                    <div class="col-10">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <input #input keyup)="buscarHoja( input.value )" type="text" class="form-control"
+                                    placeholder="Buscar ofertas...">
+
+                            </div>
+                        </div>
+                        <div class="alert alert-primary " role="alert ">
+                            <em class="text2">En esta sección podemos ver las ofertas generales de nuestra página te
+                                aconsejamos resgistrarte en una de nuestras categorias sea para publicar una oferta o
+                                para buscar empleo
+                                tambien puedes usar nuestro buscador para ver las ofertas puedes buscar por categorias,
+                                titulo de empleo, horarios.
+                            </em>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row animated fadeIn" *ngIf="cargando">
+
+                    <div class="col-sm-12">
+
+                        <div class="alert alert-warning text-center">
+                            <strong>Cargando</strong>
+                            <br>
+                            <i class="fa fa-refresh fa-spin fa-2x"></i>
+                            <br>
+                            <span>Espere por favor</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class=" container p-3 " class="col-sm">
+                    <h1 align="center" id="color">PERFILES PUBLICADOS</h1>
+                </div>
+
+
+                <div class="container">
+                    <div class="row" *ngIf="!cargando">
+                        <div class="col-12">
+                            <table class="table table-hover table-responsive" id="tableColor">
+                                <thead>
+                                    <tr>
+                                        <th>IMAGEN</th>
+                                            <th>NOMBRE</th>
+                                            <th>DESCRIPCIÓN</th>
+
+                                            <th>TELÉFONO</th>
+                                            <th>CIUDAD</th>
+                                            <th>OCUPACIÓN</th>
+                                            <th joyrideStep="perfil" title="Bienvenido"
+                                                text="Presiona el boton en la sección de categoria para que te redirija a la parte de registro y puedas ver estas ofertas en nuestra plataforma ">
+                                                CATEGORIA</th>
+
+                                            <th>GUIA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let form of  formularios| paginate: { itemsPerPage: 10, currentPage: totalRegistros }; let i = index">
+                                     <td class="w70">
+                                                <img [src]="form.usuario.img |imagen" class="img-50 img-circle pointer">
+                                            </td>
+                                            <td> {{form.nombre}} {{form.apellido}}</td>
+                                            <td>{{form.descripcion}}</td>
+
+                                            <td> {{form.usuario.telefono}} </td>
+                                            <td>{{form.ciudad}}</td>
+                                            <td>{{form.ocupacion}}</td>
+                                            <td>
+                                                <span *ngIf="(form.categorias ==='NIÑERAS')" #ruta>
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/nineraEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='CUIDADO ADULTO MAYOR')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/cuidadoAdultoEmpleador"> {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='SERVICIO DOMESTICO')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/domesticoEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='CUIDADO DE MASCOTAS')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/mascotaEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='CUIDADOS CAPACIDADES ESPECIALES')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/capacidadesEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='TUTORIAS ESCOLARES')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/tutoriasEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='TRABAJOS DEL HOGAR')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/trabajosEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='ASISTENCIA AUTOMOTRIZ')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/asistenciaEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='MENSAJERIA')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/mensajeriaEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='SPA')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/spaEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+                                                <span *ngIf="(form.categorias ==='PROFESIONALES TITULADOS')">
+                                                    <a type="button" class="btn btn-outline-primary"
+                                                        href="#/profesionalEmpleador">
+                                                        {{form.categorias}}</a>
+                                                </span>
+
+
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-success" (click)="asistencia()"
+                                                    style="width: 85px;height: 75;font-size: 50%;"><i><img
+                                                            src="../../../../assets/images/patch-question.svg"
+                                                            alt=""></i></button>
+                                            </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+-->

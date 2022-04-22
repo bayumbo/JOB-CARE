@@ -1,0 +1,504 @@
+<div class="container ">
+
+    <div id="stepper1" class="bs-stepper">
+        <div class="bs-stepper-header">
+            <div class="step" data-target="#test-l-1">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle" (click)="show1()">1</span>
+                    <span class="bs-stepper-label"></span>
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-2">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle" (click)="show()">2</span>
+                    <span class="bs-stepper-label"></span>
+                </button>
+            </div>
+
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-3">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle">3</span>
+                    <span class="bs-stepper-label"></span>
+                </button>
+            </div>
+
+        </div>
+
+
+        <!--AQUI EMPEZA EL FORMULARIO-->
+
+        <div class="bs-stepper-content">
+
+            <div id="test-l-1" class="content">
+                <form [formGroup]="registerForm" (ngSubmit)="crearUsuario()">
+                    <div class="">
+                        <div class="card-header bg-primary">
+                            <h4 class="m-b-0 text-white">OFERTA DE EMPLEO</h4>
+                        </div>
+
+                        <div class="row p-t-20">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Título del Empleo</label>
+                                    <input formControlName="tituloEmpleo" type="text" id="firstName"
+                                        class="form-control" placeholder="Título del Empleo">
+                                    <div
+                                        *ngIf="registerForm.get('tituloEmpleo').errors && registerForm.get('tituloEmpleo').dirty">
+                                        <p class="text-danger center"
+                                            *ngIf="registerForm.get('tituloEmpleo').hasError('required')">
+                                            <span size="2">Título es requerido</span>
+                                        </p>
+
+                                    </div>
+                                    <small class="form-control-feedback"></small>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Breve descripción del empleo:
+                                    </label>
+                                    <textarea formControlName="descripcionEmpleo" type="text" id="lastName"
+                                        class="form-control" placeholder="Breve descripción"></textarea>
+                                    <div
+                                        *ngIf="registerForm.get('descripcionEmpleo').errors && registerForm.get('descripcionEmpleo').dirty">
+                                        <p class="text-danger center"
+                                            *ngIf="registerForm.get('descripcionEmpleo').hasError('required')">
+                                            <span size="2">Descripción es requerida</span>
+                                        </p>
+
+                                    </div>
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group has-success">
+                                    <label class="control-label">Remuneración:</label>
+                                    <select formControlName="remuneracion" class="form-control custom-select">
+                                        <option value="Fija Mensual">Fija Mensual</option>
+                                        <option value="Eventual por Día">Eventual por Día</option>
+                                        <option value="Eventual por Hora">Eventual por Hora</option>
+                                    </select>
+                                    <div
+                                        *ngIf="registerForm.get('remuneracion').errors && registerForm.get('remuneracion').dirty">
+                                        <p class="text-danger center"
+                                            *ngIf="registerForm.get('remuneracion').hasError('required')">
+                                            <span size="2">Seleccione una de las remuneraciones</span>
+                                        </p>
+
+                                    </div>
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Valor</label>
+                                    <input formControlName="valor" type="number" class="form-control" placeholder="$">
+                                    <div *ngIf="registerForm.get('valor').errors && registerForm.get('valor').dirty">
+                                        <p class="text-danger center"
+                                            *ngIf="registerForm.get('valor').hasError('required')">
+                                            <span size="2">Valor es requerido</span>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group has-success">
+                                    <label class="control-label">Horarios:</label>
+                                    <select formControlName="horario" class="form-control custom-select">
+                                        <option value="Fijo">Fijo</option>
+                                        <option value="Una Vez">Una Vez</option>
+
+                                    </select>
+                                    <small class="form-control-feedback"> </small>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Categoria</label>
+                                    <select class="form-control custom-select" data-placeholder="CATEGORIAS"
+                                        tabindex="1" formControlName="categorias">
+                                        <option *ngFor="let opcionesgenerales of opcionesGenerales"
+                                            value="{{opcionesgenerales.categorias}}">
+                                            {{opcionesgenerales.categorias}}</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Provincias</label>
+                                    <select name="Provincia" class="browser-default custom-select form-control"
+                                       formControlName="provincia"
+                                        (change)="selectProvincia($event.target.value)">
+                                        <option value="0">Seleccione una provincia</option>
+                                        <option *ngFor="let prov of ciuadadesOpcion" value="{{prov.provincia}}">
+                                            {{prov.provincia}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Ciudad</label>
+                                    <select name="Ciudad" class="browser-default custom-select form-control"
+                                        formControlName="ciudad">
+                                        <option value="0">Seleccione una ciudad</option>
+                                        <option *ngFor="let canton of ciudad.cantones" value="{{canton}}">
+                                            {{canton}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Mi Dirección</label>
+                                    <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+                                        formControlName="direccion" placeholder="Buscar mi ubicación" autocorrect="off"
+                                        autocapitalize="on" spellcheck="off" type="text" #search>
+                                    <div
+                                        *ngIf="registerForm.get('direccion').errors && registerForm.get('direccion').dirty">
+                                        <p class="text-danger center"
+                                            *ngIf="registerForm.get('direccion').hasError('required')">
+                                            <span size="2">Dirección es requerida</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <!--/row-->
+                        <div class="alert alert-primary " role="alert ">
+                            <em class="text2">Es necesario llenar todos los campos luego presionas el boton guardar para
+                                registrar tu oferta de empleo posteriormente para publicar es obligatorio suscribirse a
+                                uno de nuestros planes para que tu perfil sea visible.</em>
+                        </div>
+                        <div class="row ">
+                            <div class="col text-danger  ">
+                                <p class="center" *ngIf="campoNoValido('tituloEmpleo')">Debe llenar el campo título
+                                    empleo</p>
+                                <p class="center" *ngIf="campoNoValido('descripcionEmpleo')">Debe escribir una
+                                    descripción del empleo </p>
+                                <p class="center" *ngIf="campoNoValido('remuneracion')">Debe seleccionar una remuneraión
+                                </p>
+                                <p class="center" *ngIf="campoNoValido('valor')">Debe escribir un valor para la oferta
+                                </p>
+                                <p class="center" *ngIf="campoNoValido('horario')">Debe seleccionar un horario</p>
+                                <p class="center" *ngIf="campoNoValido('categorias')">Debe seleccionar una categoria</p>
+                              <!--   <p class="center" *ngIf="campoNoValido('provincia')|| opcion == '0' ">Debe seleccionar
+                                    una provincia</p>
+                                <p class="center" *ngIf="campoNoValido('ciudad')|| opcion1 == '0'">Debe seleccionar una
+                                    ciudad</p> -->
+                                <p class="center" *ngIf="campoNoValido('direccion')">Debe escribir una dirección </p>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="form-actions row m-0 justify-content-center align-items-center vh-100">
+
+                        <button (click)="show()" type="submit" class="btn btn-primary  mt-5"
+                            align="center">SIGUIENTE</button>
+
+
+
+                    </div>
+
+                </form>
+
+
+            </div>
+            <div id="test-l-2" class="content">
+                <div class=" container p-3 " class="col-sm">
+                    <h3 align="center" id="color">OFERTA PARA PUBLICAR</h3>
+                </div>
+
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="card caja0">
+           
+                                <tr *ngFor="let form of  formularios let i = index">
+                                    <h5 class= "card-header" style="background: azure">Nº</h5>
+                                    <p class="card-text">{{i+1}}</p>
+                                    <h5 class= "card-header" style="background: azure">TÍTULO EMPLEO</h5>
+                                    <p class="card-text">{{form.tituloEmpleo}}</p>
+                                    <h5 class= "card-header" style="background: azure">CATEGORIA</h5>
+                                    <p class="card-text">{{form.categorias}}</p>
+                                    <h5 class= "card-header" style="background: azure">FECHA CREACIÓN</h5>
+                                    <p class="card-text">{{form.fechaReporte | date:'dd-MM-yyyy'}}</p>
+                                    <h5 class= "card-header" style="background: azure">HORARIO</h5>
+                                    <p class="card-text">{{form.horario}}</p>
+                                    <h5 class= "card-header" style="background: azure">CIUDAD</h5>
+                                    <p class="card-text">{{form.ciudad}}</p>
+                                    <h5 class= "card-header" style="background: azure">ESTADO</h5>
+                                    <p class="card-text"
+                                        [ngClass]="{'bg-primary text-white':form.estado=='PUBLICADO','bg-danger text-white':form.estado=='NO PUBLICADO'}">
+                                        {{form.estado}}
+                                    </p>
+                                    <h5 class= "card-header" style="background: azure">EDITAR</h5>
+                                    <p class="card-text">
+                                        <button type="button" class="btn btn-outline-primary"
+                                            style="width: 75px;height: 70;font-size: 50%;"
+                                            [routerLink]="['/dashboard/editaroferta2/',form._id]"><b>EDITAR</b></button>
+                                    </p>
+                                    <h5 class= "card-header" style="background: azure">PUBLICAR</h5>  
+                                    <p class="card-text" *ngFor="let plan of plan">
+                                        <button type="button" class="btn btn-outline-primary"
+                                            *ngIf="(plan.tipoPlan != null)"
+                                            style="width: 75px;height: 70;font-size: 50%;"
+                                            (click)="updateEstado1(form._id)"><b>PUBLICAR</b></button>
+                                    </p>
+                                </tr>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="row m-0 justify-content-center align-items-center vh-100">
+                    <button (click)="previus()" type="submit" class="btn btn-primary  mt-5" align="center">PUBLICAR OTRA
+                        OFERTA</button>
+                    &nbsp;&nbsp;
+                    <button (click)="next()" class="btn btn-primary  mt-5" align="center">SIGUIENTE</button>
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <div id="test-l-3" class="content text-center">
+
+
+                <div class=" container p-3 " class="col-sm">
+                    <h3 align="center" id="color">ESTÁS SUSCRITO A :</h3>
+                </div>
+
+
+                <div class="container ">
+                    <div class="row ">
+                        <div class="card caja0">
+                            
+                            <tr *ngFor="let form of  plan ; let i = index">
+                                <h5 class= "card-header" style="background: azure">Nº</h5>
+                                <p class="card-text">{{i+1}}</p>
+                                <h5 class= "card-header" style="background: azure">TÍPO DE PLAN</h5>
+                                <p class="card-text">{{form.tipoPlan}}</p>
+                                <h5 class= "card-header" style="background: azure">FECHA SUCRIPCIÓN</h5>
+                                <p class="card-text">{{form.fecha1 |date:'dd-MM-yyyy'}}</p>
+                                <h5 class= "card-header" style="background: azure">FECHA VENCIMIENTO</h5>
+                                <p class="card-text">{{form.fecha2 |date:'dd-MM-yyyy'}}</p>
+                                <h5 class= "card-header" style="background: azure">VALOR</h5>
+                                <p class="card-text"> {{form.valor}}</p>
+ 
+                            </tr>
+                        
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+
+                <!-- Row -->
+                <div class="row m-0 justify-content-center align-items-center vh-100">
+                    <!-- column -->
+                    <div class="col-lg-3 col-md-6">
+                        <!-- Card -->
+                        <div class="card caja1">
+                            <img class="card-img-top img-responsive" src="../../../assets/images/jobcare.png"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title text" align="center">Free</h4>
+                                <ul class="text">
+                                    <li>
+                                        Acceso libre
+                                    </li>
+                                    <li>
+                                        Fecha libre de vigencia
+                                    </li>
+                                    <li>
+                                        Publicar N veces
+                                    </li>
+                                    <li>
+                                        N anuncios
+                                    </li>
+                                    <br>
+                                    <li>
+                                        Acceso Master Class en todas las capacitaciones
+                                    </li>
+                                    <br>
+                                    <br>
+
+                                    <li hidden>
+                                        espacio
+                                    </li>
+                                    <li hidden>
+                                        espacio
+                                    </li>
+                                    <br>
+                                    <h1 class="text">$ 0.00 </h1>
+                                </ul>
+                                <button class="btn btn-primary text-write " (click)="registrarPlan()">SUSCRIBIR</button>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    </div>
+                    <!-- column -->
+                    <!-- column -->
+                    <div class="col-lg-3 col-md-6">
+                        <!-- Card -->
+                        <div class="card caja2">
+                            <img class="card-img-top img-responsive" src="../../../assets/images/jobcare.png"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title text">Premium (3 meses)
+                                </h4>
+                                <ul class="text">
+                                    <li>
+                                        Publicidad Off
+                                    </li>
+                                    <li>
+                                        Publicación Destacada
+                                    </li>
+                                    <li>
+                                        Descuento en todas las capacitaciones
+                                    </li>
+                                    <li>
+                                        Ofertas confidenciales
+                                    </li>
+                                    <li>
+                                        Aparición en las primeras posiciones de resultados
+                                    </li>
+
+                                    <h1 class="text">$ 5.99 </h1>
+
+
+                                </ul>
+
+                                <button class="btn btn-primary " (click)="producto1()">SUSCRIBIR</button>
+
+
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    </div>
+                    <!-- column -->
+                    <!-- column -->
+                    <div class="col-lg-3 col-md-6">
+                        <!-- Card -->
+                        <div class="card caja3">
+                            <img class="card-img-top img-responsive" src="../../../assets/images/jobcare.png"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title text">Premium (6 Meses)
+                                </h4>
+                                <ul class="text">
+                                    <li>
+                                        Publicidad Off
+                                    </li>
+                                    <li>
+                                        Publicación Destacada
+                                    </li>
+                                    <li>
+                                        Descuento en todas las capacitaciones
+                                    </li>
+                                    <li>
+                                        Ofertas confidenciales
+                                    </li>
+                                    <li>
+                                        Aparición en las primeras posiciones de resultados
+                                    </li>
+                                    <h1 class="text">$ 9.99 </h1>
+                                </ul>
+
+                                <button class="btn btn-primary " (click)="producto2()">SUSCRIBIR</button>
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    </div>
+                    <!-- column -->
+
+                    <!-- column -->
+                </div>
+                <!-- Row -->
+                <div class="alert alert-primary " role="alert ">
+                    <em class="text2">Es necesario suscribirse a uno de nuestros planes para que tus ofertas sean
+                        publicadas.</em>
+                </div>
+                <br>
+
+                <button (click)="previus()" class="btn btn-primary mt-5">ATRAS</button>
+
+                &nbsp;&nbsp;
+
+
+                <br>
+                <br>
+                <div class=" container p-3 " class="col-sm">
+                    <h3 align="center" id="color">OFERTA PARA PUBLICAR</h3>
+                </div>
+
+
+
+                <div class="container" *ngFor="let plan of plan">
+                    <div class="row" *ngIf="(plan.tipoPlan != null)">
+                        <div class="card caja0">
+
+                            <tr *ngFor="let form of  formularios let i = index">
+
+                                <h5 class= "card-header" style="background: azure">Nº</h5>
+                                <p class="card-text">{{i+1}}</p>
+                                <h5 class= "card-header" style="background: azure">TÍTULO EMPLEO</h5>
+                                <p class="card-text">{{form.tituloEmpleo}}</p>
+                                <h5 class= "card-header" style="background: azure">FECHA CREACIÓN</h5>
+                                <p class="card-text">{{form.fechaReporte | date:'dd-MM-yyyy'}}</p>
+                                <h5 class= "card-header" style="background: azure">HORARIO</h5>
+                                <p class="card-text">{{form.horario}}</p>
+                                <h5 class= "card-header" style="background: azure">ESTADO</h5>
+                                <p class="card-text" [ngClass]="{'bg-primary text-white':form.estado=='PUBLICADO','bg-danger text-white':form.estado=='NO PUBLICADO'}">{{form.estado}}</p>
+                                <h5 class= "card-header" style="background: azure">PUBLICAR</h5>
+                                <p class="card-text">
+                                    <button type="button" class="btn btn-outline-primary"
+                                                style="width: 75px;height: 70;font-size: 50%;"   (click)="updateEstado1(form._id)"
+                                    ><b>PUBLICAR</b></button>
+
+                                </p>
+                            </tr>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

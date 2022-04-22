@@ -1,0 +1,144 @@
+<app-header-pagina></app-header-pagina>
+
+<img src="../../../assets/images/CM/CAPACITATE.PNG" alt="" class="img-responsive">
+<br>
+<br>
+<div class=" container p-3 " class="col-sm">
+  <h3 align="center" id="color">CURSOS DISPONIBLES</h3>
+</div>
+<br>
+<br>
+<!--
+<div class="container p-3  " align="center">
+  <div class="row  ">
+    <div class="col-12">
+      <table class="table table-hover table-responsive btn-table  " id="tableColor">
+        <thead>
+          <tr>
+            <th scope="col" COLSPAN=1 style="background: azure">Nº</th>
+            <th scope="col" COLSPAN=1 style="background: azure">TÍTULO CURSO</th>
+            <th scope="col" COLSPAN=1 style="background: azure">CATEGORIA</th>
+            <th scope="col" COLSPAN=1 style="background: azure">FECHA CREACIÓN</th>
+
+
+            <th scope="col" COLSPAN=1 style="background: azure">VALOR</th>
+            <th scope="col" COLSPAN=1 style="background: azure">COMPRAR</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let form of  formularios| paginate: { itemsPerPage: 5, currentPage: totalRegistros }; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{form.tituloCurso}}</td>
+            <td>{{form.categorias}}</td>
+            <td>{{form.fechaReporte |date:'dd-MM-yyyy'}}</td>
+
+            <td>{{form.valor}}</td>
+
+
+
+
+
+            <td>
+              <button type="button" class="btn btn-outline-primary" style="width: 85px;height: 75;font-size: 50%;"
+                (click)="postular()"><b>COMPRAR</b></button>
+
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+
+-->
+
+
+<div class="card">
+  <div class="card-body">
+
+      <table class="tablesaw table-responsive table-bordered table-hover table tabla">
+          <thead>
+              <tr>
+                  <th scope="col" COLSPAN=1 style="background: azure">Nº</th>
+                  <th scope="col" COLSPAN=1 style="background: azure">TÍTULO CURSO</th>
+                  <th scope="col" COLSPAN=1 style="background: azure">CATEGORIA</th>
+                  <th scope="col" COLSPAN=1 style="background: azure">FECHA CREACIÓN</th>
+                  <th scope="col" COLSPAN=1 style="background: azure">VALOR</th>
+                  <th scope="col" COLSPAN=1 style="background: azure">TEMARIO</th>
+                  <th scope="col" COLSPAN=1 style="background: azure">REGISTRARSE</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr
+                  *ngFor="let form of  formularios| paginate: { itemsPerPage: 10, currentPage: totalRegistros }; let i = index">
+
+                  <td>{{i+1}}</td>
+                  <td>{{form.tituloCurso}}</td>
+                  <td>{{form.categorias}}</td>
+                  <td>{{form.fechaReporte |date:'dd-MM-yyyy'}}</td>
+
+                  <td>{{form.valor|currency:'USD'}}</td>
+
+
+                  <td align="center">
+
+
+                    <a type="button" class="btn btn-outline-primary"*ngIf="form.urlPdf != null" href="{{form.urlPdf}}"
+                    style="width: 100px;height: 70;font-size: 50%;"   target="_blank"
+                                                      ><b>VER TEMARIO</b></a>
+                      <span *ngIf="form.urlPdf == null">NO HAY TEMARIO</span>
+                   </td>
+
+
+                  <td>
+                    <button type="button" class="btn btn-outline-primary" 
+                      (click)="postular()"><b>REGISTRAR UN CURSO</b></button>
+
+
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+  <pagination-controls (pageChange)="totalRegistros = $event"></pagination-controls>
+
+  <div class="alert alert-primary " role="alert ">
+    <em class="text2">Aqui puedes ver nuestros cursos disponibles para acceder a uno de nuestros cursos es necesario registrarse para que la compra sea segura dentro de nuestra plataforma.</em>
+</div>
+</div>
+
+
+
+<app-footer></app-footer>
+
+
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
